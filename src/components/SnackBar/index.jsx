@@ -11,8 +11,10 @@ import {
 } from '@material-ui/core'
 
 const useStyle = makeStyles(() => ({
+  
   infoHeader: {
     fontSize: 20,
+    fontWeight: 'bold',
     color: '#001fff',
   },
   errorHeader: {
@@ -20,8 +22,10 @@ const useStyle = makeStyles(() => ({
     color: '#fd041b',
   },
   message: {
-    paddingTop: 10,
-    marginRight: 40,
+    fontSize: '1em',
+    fontWeight: 'bold',
+    // padding: 20,
+    margin: '0px 80px',
   },
   buttonContainer: {
     display: 'flex',
@@ -29,7 +33,8 @@ const useStyle = makeStyles(() => ({
   },
   button: {
     marginTop: '1%',
-    color: '#0fffff',
+    color: 'green',
+    fontWeight: 'bold',
     marginRight: -10,
   },
 }))
@@ -52,7 +57,7 @@ function SnackBar({ openDialog, message, onclose, severity }) {
           <Alert severity={severity}>{message}</Alert>
         </Snackbar>
       ) : (
-          <Dialog open={openDialog}>
+          <Dialog open={openDialog} >
             <DialogContent>
               <Typography
                 className={

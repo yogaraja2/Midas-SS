@@ -50,6 +50,7 @@ const configStorage = {
         'selectAvatar',
         'dashboard',
         'cashFlowValues',
+        'cashFlowData',
         'events',
         'eventCount',
         'dreams',

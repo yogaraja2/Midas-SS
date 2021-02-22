@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
-import { setCurrentTurn, setSurplusAmt, setSavingsAmt } from '../../../redux/Action'
+import { setCurrentTurn, setSurplusAmt, setSavingsAmt, setCashFlowApiData } from '../../../redux/Action'
 import { useSelector, useDispatch } from 'react-redux'
 
 
@@ -21,13 +21,11 @@ function CashFlow(props) {
   const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const dispatch = useDispatch()
   const [dataYear, setDataYear] = useState(currentTurn)
-  // const [isPassed, setPassed] = useState(false)
-  const { state } = useLocation()
-  console.log('sate')
-  console.log(state)
-  console.log('sate data')
-  console.log(state.data)
-  const currentData = state.data?.filter((f) => f.year === dataYear)[0]
+
+  const state = useSelector(state => state.cashFlowData)
+  const currentData = state[0]
+  // console.log('state')
+  // console.log(currentData)
 
   const statSectionSize = {
     md: 4,
@@ -44,10 +42,10 @@ function CashFlow(props) {
   }
 
   useEffect(() => {
-    if (!state.data) {
+    if (!state) {
       switchToEntry()
     } else {
-      setDataYear(state.data[0].currentTurn)
+      setDataYear(state[0].year)
     }
   }, [state])
 
@@ -57,33 +55,23 @@ function CashFlow(props) {
   }, [currentData?.userExpenses])
 
 
-  // const handleNext = () => {
-  //   const token = localStorage.getItem('midasToken')
-  //   const auth = 'Bearer '.concat(token)
-  //   console.log('token ' + token)
+  useEffect(() => {
 
-  //   Fetch.get(API.gamePlay.cashFlow.nextTurn, {
-  //     headers: {
-  //       Authorization: auth
-  //     }
-  //   })
-  //     .then((res) => {
-  //       // console.log('ok test')
-  //       console.log(res)
-  //       if (dataYear <= currentData.gameLength) {
-  //         if (currentData.currentTurn === dataYear) {
-  //           dispatch(setCurrentTurn(dataYear + 1))
-  //           // switchToEntry()
-  //           props.history.push(commonRoute.dashboard.mainDash)
-  //           // if (isPassed) switchToEntry()
-  //         }
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       // console.log('not ok')
-  //       console.log(err)
-  //     })
-  // }
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem('midasToken')}`
+    }
+    const param = { turn: dataYear };
+
+    Fetch.post(API.gamePlay.cashFlow.history, param, { headers })
+      .then(res => {
+        console.log(res.data)
+        dispatch(setCashFlowApiData(res.data))
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
+  }, [dataYear])
+
 
   const goToBalance = () => {
     props.history.push(commonRoute.dashboard.balance)
@@ -125,15 +113,6 @@ function CashFlow(props) {
               Next
             </Button>
           </div>
-
-          {/* {currentData?.currentTurn === dataYear && (
-            <div className="btn-wrap" onClick={handleNext}>
-              <Button className="btn nxt-btn" disabled={currentData?.gameLength === currentData?.currentTurn}>
-                Next Turn
-              </Button>
-            </div>
-          )} */}
-
         </div>
       </div>
     </div>

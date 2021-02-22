@@ -121,18 +121,15 @@ function CashFlowEntry(props) {
         if (res.status === 200) {
           dispatch(setCashFlowApiData(res.data))
           if (res.data.status >= 400) {
-            // setError('Something went wrong !!!')
-            setError(res.data.message)
+            setError('Your Expenses crossed your credit limit !!!')
+            // setError(res.data.message)
+            // props.history.push(commonRoute.gameOptions)
           }
           else {
             props.history.push({
-              pathname: commonRoute.dashboard.cashFlowInfo,
-              state: {
-                data: res.data
-              }
+              pathname: commonRoute.dashboard.cashFlowInfo
             })
           }
-
         }
         else {
           setError('Something went wrong !!!')
@@ -224,7 +221,7 @@ function CashFlowEntry(props) {
       <SnackBar
         openDialog={!!error}
         message={error}
-        severity="Error"
+        severity="info"
         onclose={setError.bind(this, null)}
       />
     </div>
