@@ -1,0 +1,30 @@
+@import '../../mixins/common';
+
+.asset-card-wrap {
+  .asset-card {
+    @include flexCenter;
+    position: relative;
+
+    .sell-sign {
+      position: absolute;
+      top: -15px;
+      right: 0;
+      font-size: 1.5em;
+      border-radius: 5px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+
+    .asset-img {
+      margin-bottom: 18px;
+    }
+
+    .asset-value {
+      position: absolute;
+      bottom: 16px;
+    }
+  }
+}

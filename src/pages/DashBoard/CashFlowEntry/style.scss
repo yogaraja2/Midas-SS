@@ -1,0 +1,151 @@
+@import '../../../mixins/common';
+
+.dashboard-main {
+  .dash-cash-flow-info-page {
+    padding: 0 82px 36px;
+
+    .turn-wrap {
+      position: relative;
+      bottom: 20px;
+      width: 100px;
+      padding: 10px;
+      margin-inline-start: 40%;
+      border-radius: 50px;
+      text-align: center;
+      align-self: center;
+      background-color: #009ffd;
+
+      .current-turn {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: white;
+      }
+    }
+
+    @include w600 {
+      padding: 0 36px 36px;
+    }
+
+    .avl-bal-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: larger;
+      font-weight: bold;
+
+      .avl-bal-entry {
+        @include flexCenterRow;
+        min-width: 200px;
+        max-width: 300px;
+        margin-bottom: 14px;
+
+        .label {
+          white-space: nowrap;
+          margin-right: 52px;
+        }
+      }
+    }
+
+    .MuiInputBase-input {
+      font-weight: bold;
+      font-size: large;
+    }
+    .MuiFormLabel-root {
+      color: #016595;
+      padding: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+      // line-height: 1;
+    }
+
+    .questions-wrap {
+      @include w960 {
+        margin-top: 36px;
+      }
+
+      .question-wrap {
+        margin-bottom: 60px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .question {
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+
+        .field-wrap {
+          display: flex;
+          flex-direction: column;
+          max-width: 284px;
+
+          // .MuiInputBase-input {
+          //   font-weight: bold;
+          //   font-size: larger;
+          // }
+
+          .qus-field {
+            margin: 8px 0 0;
+          }
+        }
+      }
+    }
+
+    .events-wrap {
+      margin-top: 30px;
+      @include w960 {
+        margin-top: 36px;
+      }
+
+      .question {
+        font-weight: bold;
+        font-size: 1.5em;
+      }
+
+      .event-wrap {
+        display: flex;
+        flex-direction: row;
+
+        .eve-name-qus-field {
+          min-width: 200px;
+        }
+        .eve-cost-qus-field {
+          max-width: 284px;
+          margin-left: 10px;
+        }
+      }
+      .add-eve-btn {
+        @include button;
+        padding: 0px;
+        margin-top: 10px;
+        width: 30px;
+      }
+    }
+
+    .btn-wrap {
+      position: relative;
+      margin: 40px 0px;
+      text-align: center;
+
+      .dreams-btn {
+        float: left;
+        @include button;
+        width: 150px;
+        padding: 5px 20px;
+      }
+      .info-btn {
+        float: right;
+        @include button;
+
+        // .btn-cont {
+        //   @include flexCenterRow;
+        //   .label {
+        //     margin-left: 6px;
+        //     vertical-align: middle;
+        //   }
+        // }
+      }
+    }
+  }
+}

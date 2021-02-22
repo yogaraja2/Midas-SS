@@ -1,0 +1,50 @@
+.select-field {
+  .label {
+    // margin-bottom: 5px;
+  }
+  .dropdown-box {
+    background: #fff;
+    border-radius: 1.5px;
+    background: var(--bg-field);
+
+    svg {
+      font-size: 26px;
+    }
+
+    &.is-disabled {
+      .MuiOutlinedInput-input{
+        background: #F0F0F0;
+        color: var(--text-lighter);
+        cursor: not-allowed;
+      }
+  
+      .MuiOutlinedInput-notchedOutline {
+        border-color: #F0F0F0;
+      }
+    }
+  }
+
+  .err-msg {
+    color: var(--error);
+    display: block;
+  }
+}
+
+.select-field.show-placeholder {
+  .dropdown-box {
+    color: var(--text-lighter);
+  }
+}
+
+.select-field.with-error {
+  position: relative;
+  padding-bottom: 20px;
+  .err-msg {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.select-field.has-full-width {
+  width: 100%;
+}

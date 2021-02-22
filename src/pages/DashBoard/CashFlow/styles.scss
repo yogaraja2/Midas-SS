@@ -1,0 +1,191 @@
+@import '../../../mixins/common';
+
+.dashboard-main {
+  .dash-cash-flow-page {
+    padding: 0 36px 70px;
+
+    @include w600 {
+      padding: 0 24px 70px;
+    }
+
+    .sec-head {
+      margin: 18px 0;
+    }
+
+    // stat entries
+    .stat-entry {
+      margin: 16px 0;
+
+      &.j-lrpart {
+        @include lrPartition;
+      }
+
+      &.j-end {
+        display: grid;
+        grid-template-columns: 47% 47%;
+        column-gap: 6%;
+
+        @include w600 {
+          @include lrPartition;
+        }
+
+        .label {
+          text-align: right;
+        }
+      }
+
+      .label {
+        font-weight: bold;
+        color: var(--text-darker);
+      }
+
+      .value {
+        @include flexCenterRow;
+
+        .coin-icon-min {
+          height: 14px;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    //---------------- statastic --------------------------
+    .stat-grid-wrap {
+      .stat-data-sec {
+        &.income-sec,
+        &.fix-exp-sec,
+        &.var-exp-sec {
+          h2 {
+            color: #009ffd;
+            text-align: center;
+          }
+          border-right: 1px solid #ddd;
+        }
+
+        @include w960 {
+          &.fix-exp-sec {
+            border: none;
+          }
+
+          &.var-exp-sec {
+            margin-top: 36px;
+          }
+        }
+
+        @include w600 {
+          &.income-sec {
+            border: none;
+          }
+
+          &.fix-exp-sec {
+            margin-top: 36px;
+          }
+        }
+
+        .divider {
+          border: 1px solid #ddd;
+        }
+
+        .content-wrap {
+          margin-right: 48px;
+
+          &.m-left {
+            margin-left: 48px;
+          }
+
+          @include w600 {
+            margin-right: 0;
+
+            &.m-left {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+
+      // stat total
+      .stat-total-wrap {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 46px;
+
+        @include w600 {
+          display: block;
+          padding: 0;
+          border-top: 1px solid var(--text);
+        }
+
+        .label {
+          white-space: nowrap;
+        }
+
+        .value {
+          margin-left: 46px;
+        }
+      }
+    }
+
+    // ---------------------- Satisfaction ----------------------
+
+    .satisfiction-card {
+      // display: flex;
+      // justify-content: space-around;
+      // align-items: center;
+
+      .score-wrap {
+        @include flexCenter;
+
+        @include w600 {
+          &.mar-on-mob {
+            margin-top: 36px;
+          }
+        }
+
+        .value {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          @include flexCenter;
+
+          @include w960 {
+            width: 70px;
+            height: 70px;
+          }
+        }
+
+        &.neg-sat .value {
+          background: rgba(255, 71, 87, 0.1);
+          color: var(--error);
+          font-weight: bold;
+        }
+
+        &.pve-sat .value {
+          background: rgba(46, 213, 115, 0.1);
+          color: var(--success);
+          font-weight: bold;
+        }
+
+        .label {
+          margin-top: 14px;
+          font-size: 1.38em;
+
+          @include w960 {
+            font-size: 1em;
+          }
+        }
+      }
+    }
+
+    .action-btn-wrap {
+      display: flex;
+      justify-content: space-between;
+
+      .btn-wrap {
+        .btn {
+          @include button;
+          // margin-right: 24px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import '../../mixins/common';
+
+.txt-area-wrap {
+  .txt-area {
+    @include textarea;
+    width: calc(100% - 34px);
+    height: 192px;
+  }
+}
+
+.txt-area-wrap.with-error {
+  position: relative;
+  padding-bottom: 20px;
+}

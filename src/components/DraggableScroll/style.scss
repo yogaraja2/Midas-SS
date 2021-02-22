@@ -1,0 +1,25 @@
+@import '../../mixins/common';
+
+.draggable-scroll-container {
+  &.axis-x.has-scroll {
+    @include flexCenterRow;
+
+    .draggable-sec {
+      width: 100%;
+    }
+  }
+
+  &.axis-y.has-scroll {
+    @include flexCenter;
+  }
+
+  &.is-hold.has-scroll {
+    .draggable-sec {
+      cursor: move;
+    }
+  }
+
+  .nav-btn {
+    padding: 6px;
+  }
+}

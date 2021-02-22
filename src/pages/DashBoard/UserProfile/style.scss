@@ -1,0 +1,120 @@
+@import '../../../mixins/common';
+
+.dashboard-main {
+  .user-profile-root {
+    width: 60%;
+    position: relative;
+    margin: auto;
+    // right: 20px;
+    // bottom: 50px;
+
+    .select-wrap-card {
+      border-radius: 20px;
+      background: white;
+      .select-wrap {
+        display: flex;
+        flex-direction: 'row';
+        padding: 30px;
+        align-items: baseline;
+        justify-content: space-between;
+
+        .title {
+          color: 000000;
+          font-weight: bold;
+        }
+        .btn-wrap {
+          .avatar-chg-btn,
+          .pwd-chg-btn,
+          .len-fld {
+            display: inline-block;
+            width: 80px;
+            padding: 5px;
+            margin: 10px;
+            border-radius: 50px;
+            text-transform: none;
+            text-align: center;
+            font-weight: 700;
+            border: 2px solid #c3c3c3;
+            color: #9b9b9b;
+            cursor: pointer;
+
+            &.selected {
+              border: 2px solid #009ffd;
+              color: #009ffd;
+            }
+          }
+        }
+        border-bottom: 0.3px solid #d9d9d9;
+      }
+    }
+    .nav-btn-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      top: 50px;
+      bottom: 30px;
+      justify-content: space-between;
+
+      .new-btn {
+        @include button;
+        background-color: rgb(29, 114, 54);
+      }
+      .quit-btn {
+        @include button;
+        background-color: #f20001;
+      }
+      @include w320 {
+        position: static;
+        margin-top: 16px;
+      }
+    }
+  }
+}
+
+// --------- Password Popup ---------- //
+
+.popup-dialog-container {
+  .changePassword {
+    .body-wrap {
+      @include flexCenter;
+      width: 100%;
+
+      .password-fields-wrap {
+        margin: 24px 0;
+      }
+
+      .dlg-action-btn {
+        @include lrPartition;
+        width: 80%;
+
+        @include w320 {
+          width: 90%;
+        }
+      }
+    }
+  }
+}
+
+// avatar-selection
+.update-avatar {
+  .avatars-wrap {
+    display: flex;
+    flex-direction: row;
+
+    .avatar {
+      margin: 5px;
+      cursor: pointer;
+
+      .img-wrap {
+        img {
+          width: 100px;
+          height: 100px;
+        }
+      }
+      &.selected {
+        border: 2px solid #009ffd;
+        border-radius: 5px;
+      }
+    }
+  }
+}

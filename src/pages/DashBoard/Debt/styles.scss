@@ -1,0 +1,127 @@
+@import '../../../mixins/common';
+
+.dashboard-main {
+  .debt-mgt-main {
+    padding: 0 36px 70px;
+
+    @include w600 {
+      padding: 0 24px 70px;
+    }
+
+    .sec-head {
+      margin: 18px 0;
+    }
+
+    // stats entry
+    .stat-entry {
+      margin: 16px 0;
+
+      &.j-lrpart {
+        @include lrPartition;
+      }
+
+      &.j-end {
+        display: grid;
+        grid-template-columns: 47% 47%;
+        column-gap: 6%;
+
+        @include w600 {
+          @include lrPartition;
+        }
+
+        .label {
+          text-align: right;
+        }
+      }
+
+      .label {
+        font-weight: bold;
+        color: var(--text-darker);
+      }
+
+      .value {
+        @include flexCenterRow;
+
+        .coin-icon-min {
+          height: 14px;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .stat-grid-wrap {
+      .stat-data-sec {
+        &.income-sec,
+        &.fix-exp-sec {
+          h2 {
+            // text-align: center;
+            color: #009FFD;
+          }
+          // border-left: 1px solid #ddd;
+          margin-top: 20px;
+        }
+
+        @include w960 {
+          &.fix-exp-sec {
+            border: none;
+          }
+
+          &.var-exp-sec {
+            margin-top: 36px;
+          }
+        }
+
+        @include w600 {
+          &.income-sec {
+            border: none;
+          }
+
+          &.fix-exp-sec {
+            margin-top: 36px;
+          }
+        }
+
+        .divider {
+          border: 1px solid #ddd;
+        }
+
+        .content-wrap {
+          margin-right: 48px;
+
+          &.m-left {
+            margin-left: 48px;
+          }
+
+          @include w600 {
+            margin-right: 0;
+
+            &.m-left {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+
+      // stat total
+      .stat-total-wrap {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 46px;
+
+        @include w600 {
+          display: block;
+          padding: 0;
+          border-top: 1px solid var(--text);
+        }
+
+        .label {
+          white-space: nowrap;
+        }
+
+        .value {
+          margin-left: 46px;
+        }
+      }
+    }
+  }
+}

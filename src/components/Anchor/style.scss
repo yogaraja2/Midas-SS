@@ -1,0 +1,13 @@
+.anchor-link {
+  color: var(--teal);
+  cursor: pointer;
+  text-decoration: underline;
+
+  &.no-underline {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

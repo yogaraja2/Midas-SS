@@ -1,0 +1,248 @@
+@import '../../mixins/common';
+
+.dashboard-root {
+  .menu-icon-btn {
+    padding: 6px;
+
+    .menu-icon {
+      color: var(--text);
+      font-size: 1.2em;
+    }
+
+    @include w320 {
+      font-size: 1em;
+      margin-right: 4px;
+    }
+  }
+
+  // ----------------- side bar -------------------------
+  .side-nav {
+    background: linear-gradient(180deg, #009ffd 0%, #2a2a72 100%);
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    @include w600 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 10;
+      transition: 0.2s;
+
+      &.menu-closed {
+        left: -300px;
+      }
+
+      &.menu-open {
+        left: 0;
+        right: 300px;
+
+        @include w400 {
+          right: 270px;
+        }
+
+        @include w320 {
+          right: 200px;
+        }
+      }
+    }
+
+    .menu-icon-btn {
+      display: none;
+      @include w600 {
+        display: block;
+        align-self: flex-start;
+        margin: 24px 16px;
+      }
+    }
+
+    .left-partition {
+      width: 100%;
+
+      //profile
+      .profile-wrap {
+        @include flexCenter;
+        margin: 36px 0;
+        padding: 24px 0;
+        cursor: pointer;
+        &.selected {
+          border-left: 3px solid white;
+          background: rgba(0, 0, 0, 0.07);
+        }
+
+        @include w600 {
+          margin: 0 0 36px;
+        }
+
+        .user-profile-img {
+          border-radius: 50%;
+          background: #fff;
+          width: 70px;
+          height: 70px;
+
+          .user-profile-img {
+            background: url('../../assets/img/User1.svg') no-repeat center;
+            width: 67px;
+            height: 67px;
+          }
+        }
+      }
+
+      // menus
+      .field-main-wrap {
+        .nav-fields-wrap {
+          padding: 24px 0;
+          cursor: pointer;
+
+          @include h720 {
+            padding: 18px 0;
+
+            img {
+              width: 30px;
+              height: 30px;
+            }
+          }
+
+          .nav-fields {
+            @include flexCenter;
+
+            .field-label {
+              margin-top: 8px;
+              color: #fff;
+            }
+          }
+
+          &.selected {
+            border-left: 3px solid #fff;
+            background: rgba(0, 0, 0, 0.07);
+          }
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.07);
+          }
+        }
+      }
+    }
+
+    // logout
+    .log-out-wrap {
+      justify-self: flex-end;
+      // margin-top: 5px;
+      margin-bottom: 54px;
+
+      @include h720 {
+        margin-bottom: 32px;
+      }
+
+      .log-out-btn {
+        color: #fff;
+      }
+    }
+  }
+
+  .dashboard-main-wrap {
+    background: url('../../assets/img/dashboard-bg.svg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+
+    // ------------------ header --------------------------
+    .dash-header-wrap {
+      .dashboard-header {
+        @include lrPartition;
+        padding: 25px;
+
+        .left-part {
+          @include flexCenterRow;
+        }
+
+        // hamburger menu toggle
+        .menu-icon-btn {
+          display: none;
+
+          @include w600 {
+            display: block;
+            margin-right: 8px;
+          }
+        }
+
+        // midas logo
+        .m-logo {
+          height: 50px;
+        }
+        // revenue
+        .cash-wrap {
+          @include flexCenterRow;
+          padding: 5px 10px;
+          border-radius: 5px;
+          .cash-icon {
+            margin-right: 8px;
+            width: 25px;
+            height: 25px;
+          }
+
+          .cash-value {
+            font-size: 1.5em;
+            font-weight: 700;
+          }
+        }
+
+        // .total-cash {
+        //   display: flex;
+        //   flex-direction: column;
+        //   padding: 5px;
+        //   background-color: #009ffd;
+        //   border-radius: 5px;
+        //   @include flexCenter;
+
+        //   .title-wrap {
+        //     text-align: center;
+        //     color: white;
+        //     font-size: 1rem;
+        //   }
+        // }
+
+        @include w600 {
+          padding: 24px;
+          padding-left: 16px;
+
+          .m-logo {
+            height: 32px;
+          }
+
+          .total-cash {
+            .cash-icon {
+              height: 24px;
+            }
+
+            .cash-value {
+              font-size: 1.2em;
+            }
+          }
+        }
+      }
+    }
+
+    // ---------------- dashboard pages --------------------
+    .dashboard-main {
+      align-items: flex-start;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--bg-panel-card);
+
+      //------------ next btn ------------------------
+      .btn-wrap {
+        text-align: right;
+        margin-top: 18px;
+
+        .nxt-btn {
+          @include button;
+        }
+      }
+    }
+  }
+}

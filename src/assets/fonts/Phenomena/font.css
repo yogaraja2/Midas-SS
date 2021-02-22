@@ -1,0 +1,48 @@
+/* @font-face {
+    font-family: 'Phenomena';
+    src: local('Phenomena Medium'), local('Phenomena-Medium'),
+        url('Phenomena-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+} */
+
+@font-face {
+    font-family: 'Phenomena';
+    src: local('Phenomena Black'), local('Phenomena-Black'),
+        url('Phenomena-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Phenomena';
+    src: local('Phenomena Regular'), local('Phenomena-Regular'),
+        url('Phenomena-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Phenomena';
+    src: local('Phenomena Bold'), local('Phenomena-Bold'),
+        url('Phenomena-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Phenomena';
+    src: local('Phenomena Thin'), local('Phenomena-Thin'),
+        url('Phenomena-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Phenomena';
+    src: local('Phenomena Light'), local('Phenomena-Light'),
+        url('Phenomena-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+

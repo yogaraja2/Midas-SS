@@ -1,0 +1,24 @@
+@import '../../mixins/common';
+
+.highlight-card-comp {
+  display: inline-flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  align-items: center;
+  background: var(--primary);
+  padding: 8px 18px;
+  min-width: 290px;
+  // max-width: 250px;
+
+  .label {
+    font-size: 1.125em;
+    color: #fff;
+  }
+
+  .value-wrap {
+    background: #fff;
+    padding: 8px 24px;
+    font-size: 1.2em;
+    border-radius: 5px;
+  }
+}

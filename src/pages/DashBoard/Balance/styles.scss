@@ -1,0 +1,316 @@
+@import '../../../mixins/common';
+
+.dashboard-main {
+  .dashboard-balance-page {
+    padding: 0 36px 36px;
+
+    @include w600 {
+      padding: 0 36px 24px;
+    }
+
+    .year-bar-wrap {
+      margin-bottom: 24px;
+    }
+
+    .sec-head {
+      margin-bottom: 28px;
+    }
+
+    //--------------- asset list ------------------------
+    .assets-wrap {
+      .asset-card-wrap {
+        display: flex;
+
+        .asset-card {
+          width: 100%;
+
+          @include w600 {
+            .sell-sign {
+              font-size: 1.2em;
+            }
+          }
+
+          .asset-img {
+            max-height: 130px;
+            max-width: 200px;
+
+            @include w1280 {
+              max-width: 150px;
+            }
+
+            @include w960 {
+              max-width: 100px;
+            }
+
+            @include w400 {
+              max-width: 70px;
+            }
+          }
+
+          .asset-value {
+            @include w1280 {
+              font-size: 0.9em;
+            }
+
+            @include w600 {
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+    }
+
+    .asset-tot,
+    .liability-tot,
+    .netWorth-tot {
+      margin-top: 28px;
+
+      @include w600 {
+        display: flex;
+      }
+    }
+
+    // ---------------- liability table -----------------------------------
+
+    .liabilities-wrap {
+      width: 50%;
+      margin-top: 28px;
+
+      .lblity-card {
+        padding: 8px 0;
+
+        @include w600 {
+          max-width: calc(100vw - 48px);
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+
+        thead {
+          border-bottom: 1px solid #ddd;
+
+          th {
+            color: var(--primary);
+            font-size: 1.75em;
+
+            @include w600 {
+              font-size: 1.5em;
+            }
+          }
+        }
+
+        td,
+        th {
+          padding: 12px;
+          &:first-child {
+            .cell {
+              padding-left: 24px;
+
+              @include w960 {
+                padding-left: 8px;
+              }
+            }
+          }
+
+          &:last-child {
+            .cell {
+              padding-right: 24px;
+
+              @include w960 {
+                padding-right: 8px;
+              }
+            }
+          }
+        }
+
+        .liblty-tbl-row.has-title {
+          &:first-child {
+            .cell {
+              margin-top: 18px;
+            }
+          }
+          &:last-child {
+            .cell {
+              margin-bottom: 18px;
+            }
+          }
+        }
+
+        tfoot {
+          border-top: 1px solid #ddd;
+
+          .col {
+            font-size: 1.5em;
+
+            @include w600 {
+              font-size: 1.3em;
+            }
+          }
+        }
+
+        tbody .col {
+          font-size: 1.125em;
+          font-weight: normal;
+
+          @include w600 {
+            font-size: 1em;
+          }
+        }
+
+        .col {
+          .label-wrap {
+            @include flexCenterRow;
+            color: var(--text-darker);
+
+            .info {
+              @include flexCenter;
+              margin-left: 8px;
+            }
+          }
+
+          &.col-center {
+            .cell {
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+
+    .btn-stat-wrap {
+      // @include lrPartition;
+
+      @include w600 {
+        display: block;
+      }
+
+      .btn-wrap {
+        margin-top: 28px;
+      }
+    }
+  }
+}
+
+// -------------------- sell/buy asset -------------------------------------
+
+.popup-dialog-container {
+  // sell dialog
+  .das-bal-sell-asst-dlg {
+    .body-wrap {
+      @include flexCenter;
+      width: 100%;
+
+      .asset-wrap {
+        margin: 24px 0;
+      }
+
+      .dlg-action-btn {
+        @include lrPartition;
+        width: 80%;
+
+        @include w320 {
+          width: 90%;
+        }
+      }
+    }
+  }
+
+  // buy dialog
+  .dash-buy-asset-dlg {
+    max-width: 90vw;
+    overflow: hidden;
+
+    .body-wrap {
+      padding: 24px 50px 0;
+      .asset-list-wrap {
+        @include flexCenterRow;
+        max-width: 900px;
+        overflow-x: auto;
+
+        @include w600 {
+          max-height: 65vh;
+          overflow-y: auto;
+        }
+
+        .buying-card {
+          @include flexCenter;
+
+          .buy-asset-card {
+            .asset-card {
+              border: 5px solid rgba(216, 216, 216, 0.4);
+              overflow: hidden;
+              width: 150px;
+              height: 90px;
+
+              .asset-img {
+                max-width: 120px;
+                max-height: 70px;
+              }
+
+              .asset-value {
+                .cash-icon {
+                  font-size: 0.85em;
+                }
+
+                .cash-value {
+                  font-size: 1.25em;
+                }
+              }
+
+              @include w960 {
+                height: 70px;
+                .asset-img {
+                  max-height: 40px;
+                }
+
+                .asset-value {
+                  .cash-icon {
+                    font-size: 0.73em;
+                  }
+
+                  .cash-value {
+                    font-size: 1.1em;
+                  }
+                }
+              }
+            }
+          }
+
+          .item-name {
+            font-size: 1.7em;
+            font-weight: 700;
+            margin-top: 8px;
+
+            @include w960 {
+              font-size: 1.4em;
+            }
+          }
+
+          &.selected {
+            .asset-card {
+              border: 5px solid rgba(0, 159, 253, 0.4);
+            }
+          }
+        }
+      }
+
+      .btn-wrap {
+        text-align: right;
+        margin-top: 24px;
+
+        @include w600 {
+          margin-top: 36px;
+        }
+
+        .buy-btn {
+          @include button;
+        }
+      }
+    }
+  }
+}

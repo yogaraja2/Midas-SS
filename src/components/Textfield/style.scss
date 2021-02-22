@@ -1,0 +1,87 @@
+@import '../../mixins/responsive';
+
+.txt-field-wrap {
+  .txt-field {
+    width: 100%;
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .txt-field-inp {
+      font-family: var(--fontMain);
+      border-radius: 1.5px;
+      background: var(--bg-field);
+
+      &:hover {
+        .MuiOutlinedInput-notchedOutline {
+          border-color: var(--primary);
+        }
+      }
+
+      .MuiInputBase-input {
+        &::placeholder {
+          color: var(--text-lighter);
+          opacity: 0.8;
+        }
+      }
+
+      // .MuiOutlinedInput-notchedOutline {
+      //   border-color: #e2e2e2;
+      // }
+
+      .MuiInputAdornment-positionStart {
+        color: var(--text-darker);
+      }
+
+      .MuiInputAdornment-positionEnd {
+        .clr-btn {
+          color: var(--text-lighter);
+          &:hover {
+            background: transparent;
+          }
+        }
+        @include w600 {
+          .MuiIconButton-root {
+            .MuiSvgIcon-root {
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .txt-field-error {
+    color: var(--error);
+    display: block;
+  }
+
+  &.is-disabled {
+    .txt-field {
+      .MuiOutlinedInput-input {
+        background: #f0f0f0;
+        color: var(--text-lighter);
+        cursor: not-allowed;
+      }
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: #f0f0f0;
+      }
+    }
+
+    .txt-field-inp:hover .MuiOutlinedInput-notchedOutline {
+      border-color: #f0f0f0;
+    }
+  }
+}
+
+.txt-field-wrap.with-error {
+  position: relative;
+  padding-bottom: 20px;
+  .txt-field-error {
+    position: absolute;
+    bottom: 0;
+  }
+}

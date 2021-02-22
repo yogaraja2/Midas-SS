@@ -1,0 +1,37 @@
+@import '../../../mixins/common';
+
+.account-wrapper {
+  .login-box-sec {
+    .header-sec {
+      font-size: 1.8em;
+
+      .sign-up-sec {
+        @include flexCenterRow;
+        font-size: 0.7em;
+        margin: 16px 0 50px;
+
+        .cont {
+          color: var(--text-light);
+          margin-right: 8px;
+        }
+
+        .create-btn {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .field-wrap {
+      .form-field {
+        .psswd-ctrl {
+          @include lrPartition;
+          margin-top: 26px;
+
+          .forget-psswd-btn {
+            color: var(--primary);
+          }
+        }
+      }
+    }
+  }
+}

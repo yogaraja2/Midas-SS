@@ -1,0 +1,50 @@
+@import '../../mixins/common';
+
+.year-bar-wrap {
+  .draggable-sec {
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    .year-box {
+      @include flexCenter;
+      @include noSelect;
+      padding: 12px 0;
+      border-bottom: 3px solid #fff;
+      transition: 0.5s;
+
+      .selection-circle {
+        @include flexCenter;
+        border-radius: 50%;
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        font-size: 1.5em;
+        font-weight: 800;
+
+        @include w600 {
+          font-size: 1em;
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      &.selected {
+        .selection-circle {
+          background: #fff;
+          color: var(--primary);
+        }
+      }
+
+      &.fill-bar {
+        border-color: var(--primary);
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import '../../mixins/common';
+
+.link-btn {
+  @include linkBtn;
+}
+
+.link-btn.disabled {
+  color: var(--disabledBtn);
+  cursor: default;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

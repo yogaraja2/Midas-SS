@@ -1,0 +1,104 @@
+@import '../../../mixins/common';
+@import '../../../mixins/responsive';
+
+.instructor-login {
+  .home-option-card {
+    background: var(--bg-panel-card);
+    @include flexCenter;
+    width: 50%;
+    height: 70%;
+    position: relative;
+    overflow: auto;
+
+    @include w960 {
+      height: 90%;
+    }
+
+    @include w320 {
+      height: 95%;
+    }
+
+    .options-selector {
+      display: flex;
+      justify-content: space-around;
+
+      .option-wrap {
+        text-align: center;
+
+        .option-label {
+          font-size: 1.4em;
+          font-weight: bold;
+          margin-bottom: 12px;
+        }
+
+        .option-image {
+          border-radius: 50%;
+          height: 270px;
+          width: 270px;
+          position: relative;
+
+          @include w960 {
+            width: 150px;
+            height: 150px;
+          }
+
+          .image-warp {
+            @include flexCenter;
+            background: #fff;
+            position: absolute;
+            border-radius: 50%;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+
+            img {
+              max-width: 200px;
+              max-height: 180px;
+
+              @include w960 {
+                max-width: 90px;
+                max-height: 90px;
+              }
+            }
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        &.selected {
+          .selector-bg {
+            background: url('../../../assets/img/Selected-Blue.svg') no-repeat
+              center;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .foot-sec {
+      width: 90%;
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      // background-color: rgb(156, 156, 216);
+
+      .signout-wrap,
+      .nxt-wrap {
+        position: relative;
+        .nxt-btn,
+        .signout-btn {
+          @include button;
+        }
+
+        @include w320 {
+          position: static;
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@import '../../mixins/common';
+
+.popup-dialog-container {
+  .MuiPaper-root {
+    border-radius: 15px;
+
+    .dlg-content-wrap {
+      @include flexCenter;
+      padding: 24px 0;
+      position: relative;
+
+      .head-wrap {
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid #e3e3e3;
+        padding: 0 50px 18px;
+        width: calc(100% - 100px);
+        color: var(--text-darker);
+
+        .dlg-head {
+          padding: 0 15px;
+        }
+
+        .close-btn-wrap {
+          position: absolute;
+          right: 28px;
+          top: 28px;
+
+          .close-btn {
+            padding: 6px;
+            font-size: 1.5em;
+          }
+
+          @include w600 {
+            top: 22px;
+            right: 10px;
+            font-size: 1.5em;
+          }
+        }
+
+        @include w600 {
+          font-size: 0.69em;
+          padding: 0 18px 18px;
+          width: calc(100% - 36px);
+        }
+      }
+
+      &.with-padding {
+        .body-wrap {
+          padding: 0 50px;
+
+          @include w600 {
+            padding: 0 18px;
+          }
+        }
+      }
+    }
+  }
+}

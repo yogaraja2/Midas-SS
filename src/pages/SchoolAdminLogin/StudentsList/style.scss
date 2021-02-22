@@ -1,0 +1,53 @@
+@import '../../../mixins/common';
+
+.students-list-card {
+  background: var(--bg-panel-card);
+  height: 90%;
+  position: relative;
+  overflow: auto;
+
+  .title {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 10px 20px;
+  }
+
+  .students-list-wrap {
+    width: 80%;
+    margin: 3% auto;
+    background: white;
+
+    @include w320 {
+      width: 90%;
+      margin: 3% auto;
+    }
+
+    .student-field-wrap {
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      border-bottom: 1px solid #dcdcdc;
+      // background: greenyellow;
+      align-items: center;
+      justify-content: center;
+      div {
+        display: inline-block;
+        position: relative;
+        font-size: 1.2em;
+        text-align: center;
+        padding: 5px;
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50px;
+          background-color: rgba(194, 184, 184,0.5);
+        }
+      }
+
+      &:hover {
+        background: #74c6f5;
+      }
+    }
+  }
+}

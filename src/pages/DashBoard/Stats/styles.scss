@@ -1,0 +1,73 @@
+@import '../../../mixins/common';
+
+.dashboard-main {
+  .stats-main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    .title {
+      text-align: center;
+      // color: #009ffd;
+      font-size: 1.4em;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .score-wrap {
+      width: 100%;
+      height: 100%;
+      margin-top: 50px;
+      // background-color: aquamarine;
+      @include flexCenter;
+      align-self: center;
+      .chart-wrap {
+        width: 90%;
+        .chart-title {
+          color: var(--primary);
+        }
+      }
+    }
+
+    .journal-wrap {
+      width: 90%;
+      height: 100%;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      // background-color: white;
+      align-self: center;
+      .journal-title {
+        text-align: center;
+        color: var(--primary);
+      }
+      .summary {
+        .summary-title {
+          color: var(--primary);
+        }
+        .summary-details {
+          margin-top: 20px;
+          margin-left: 20px;
+          font-size: 25px;
+          .money {
+            color: orangered;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .btn-stat-wrap {
+      // @include lrPartition;
+
+      @include w600 {
+        display: block;
+      }
+
+      .btn-wrap {
+        margin: 28px;
+      }
+    }
+  }
+}

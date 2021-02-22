@@ -1,0 +1,31 @@
+@import './mixins/palette';
+
+body {
+  font-family: var(--font-main);
+  color: var(--text);
+  font-size: 16px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.midas-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.hide {
+  display: none !important;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}

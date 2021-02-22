@@ -1,0 +1,28 @@
+@import '../../mixins/common';
+
+.action-btn-comp-wrap {
+  .neg-btn {
+    @include button;
+  }
+
+  .pve-btn {
+    text-transform: none;
+    font-size: 1rem;
+    padding: 4px 20px;
+    color: var(--primary);
+    font-weight: bold;
+    width: 100px;
+    border-radius: 3px;
+    border-color: var(--primary);
+    transition: 0.3s;
+
+    &:hover {
+      background: #eee;
+    }
+
+    &.Mui-disabled {
+      background: var(--disabledBtn);
+      color: #fff;
+    }
+  }
+}
