@@ -36,7 +36,7 @@ function Login() {
       .then((res) => {
 
         const { data } = res
-        console.log(data)
+        // console.log(data)
         dispatch(setLoginData(data))
         setResponse(data)
         setCount(true)

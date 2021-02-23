@@ -24,12 +24,10 @@ function MainDash() {
             }
         })
             .then(res => {
-                console.log('test')
-                console.log(res)
                 setDetails(res.data)
             })
             .catch(err => {
-                console.log(err.message)
+                // console.log(err.message)
             })
     }, [])
 
@@ -49,26 +47,33 @@ function MainDash() {
 
     const goToNextTurn = () => {
 
-        Fetch.get(API.gamePlay.cashFlow.nextTurn, {
-            headers: {
-                Authorization: auth
-            }
-        })
-            .then((res) => {
-                console.log(res)
-                if (res.status === 200) {
-                    dispatch(setCurrentTurn(currentTurn + 1))
-                    dispatch(setEventCount(1))
-                    dispatch(setEventsCost([{
-                        eventName: '',
-                        eventCost: ''
-                    }]))
-                    history.push(commonRoute.dashboard.cashFlow)
+        if (details?.key !== -1) {
+            Fetch.get(API.gamePlay.cashFlow.nextTurn, {
+                headers: {
+                    Authorization: auth
                 }
             })
-            .catch((err) => {
-                console.log(err)
-            })
+                .then((res) => {
+                    // console.log(res)
+                    if (res.status === 200) {
+                        dispatch(setCurrentTurn(currentTurn + 1))
+                        dispatch(setEventCount(1))
+                        dispatch(setEventsCost([{
+                            eventName: '',
+                            eventCost: ''
+                        }]))
+                        history.push(commonRoute.dashboard.cashFlow)
+                    }
+                })
+                .catch((err) => {
+                    // console.log(err)
+                })
+        }
+        else {
+            history.push(commonRoute.dashboard.cashFlow)
+        }
+
+
     }
 
     const goToNewGame = () => {
@@ -78,7 +83,7 @@ function MainDash() {
             }
         })
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 if (res.status === 200) {
                     dispatch(setNewGame())
                     dispatch(setPageNo(0))
@@ -86,17 +91,17 @@ function MainDash() {
                 }
             })
             .catch(err => {
-                console.log(err.message)
+                // console.log(err.message)
             })
     }
 
     return (
         <Grid container className="dash-main">
             <div className="header-wrap">
-                <div className="points-wrap">
+                {/* <div className="points-wrap">
                     <img src={pointIcon} alt='points' className="point-icon" />
                     <span className="points">{details?.totalScore}</span>
-                </div>
+                </div> */}
                 <div className="turns-sec">
                     <div className="title-wrap">
                         <h3>Turns Left</h3>
@@ -108,28 +113,47 @@ function MainDash() {
             </div>
             <div className="body-wrap">
                 <div className="field-wrap">
-                    <div className="head-line">Username</div>
+                    <div className="head-line">Name</div>
                     <div className="content">{details?.name}</div>
                 </div>
                 <div className="field-wrap">
                     <div className="head-line">Rank</div>
-                    <div className="content">{details?.leaderBoardRank}</div>
+                    <div className="content">
+                        <span className="rank"><img
+                            src={require('../../../assets/img/rank.svg').default} alt="rank" /></span>
+                        {details?.leaderBoardRank}
+                    </div>
                 </div>
                 <div className="field-wrap">
                     <div className="head-line">Score</div>
-                    <div className="content">{details?.totalScore}</div>
+                    <div className="content">
+                        <span className="coin"><img src={pointIcon} alt='points' /></span>
+                        {details?.totalScore}
+                    </div>
                 </div>
                 <div className="field-wrap">
                     <div className="head-line">Cash Available</div>
-                    <div className="content">${details?.cashAvailable}</div>
+                    <div className="content">
+                        <span className="coin"><img
+                            src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
+                            ${details?.cashAvailable}
+                    </div>
                 </div>
                 <div className="field-wrap">
                     <div className="head-line">Retirement Savings</div>
-                    <div className="content">${details?.retirementSavings}</div>
+                    <div className="content">
+                        <span className="coin"><img
+                            src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
+                        ${details?.retirementSavings}
+                    </div>
                 </div>
                 <div className="field-wrap">
                     <div className="head-line">Networth</div>
-                    <div className="content">${details?.networth}</div>
+                    <div className="content">
+                        <span className="coin"><img
+                            src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
+                        ${details?.networth}
+                    </div>
                 </div>
             </div>
             <div className="footer-wrap">

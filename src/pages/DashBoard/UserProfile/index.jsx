@@ -66,7 +66,7 @@ function UserProfile() {
             }
         })
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 if (res.status === 200) {
                     dispatch(setNewGame())
                     dispatch(setPageNo(0))
@@ -74,7 +74,7 @@ function UserProfile() {
                 }
             })
             .catch(err => {
-                console.log(err.message)
+                // console.log(err.message)
             })
     }
 

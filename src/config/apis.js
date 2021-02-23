@@ -9,6 +9,7 @@ export const API = {
       newGame: '/newGame',
     },
     balance: '/balancesheet',
+    sellAsset: '/sell',
     dept: '/deptManagement',
     stats: '/stats'
   },

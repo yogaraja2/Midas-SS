@@ -64,11 +64,11 @@ function CashFlow(props) {
 
     Fetch.post(API.gamePlay.cashFlow.history, param, { headers })
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         dispatch(setCashFlowApiData(res.data))
       })
       .catch(err => {
-        console.log(err.message)
+        // console.log(err.message)
       })
   }, [dataYear])
 

@@ -113,11 +113,7 @@ function CashFlowEntry(props) {
 
     Fetch.post(API.gamePlay.cashFlow.entry, params, { headers })
       .then((res) => {
-        console.log('cashflow response ')
-        console.log(res)
-        console.log('response data')
-        console.log(res.data)
-
+        
         if (res.status === 200) {
           dispatch(setCashFlowApiData(res.data))
           if (res.data.status >= 400) {

@@ -5,7 +5,7 @@ import SellPopup from './SellPopup'
 import BuyPopup from './BuyPopup'
 import { useSelector } from 'react-redux'
 
-function Assets({ data, isEnablesell }) {
+function Assets({ data, obj, isEnablesell }) {
 
   const house = useSelector(state => state.dreams.house.houseName)
   const car = useSelector(state => state.dreams.car.carName)
@@ -54,7 +54,7 @@ function Assets({ data, isEnablesell }) {
         onClick={handleClick.bind(this, 0, false)}
         onSell={handleClick.bind(
           this,
-          { img: car, name: 'car' },
+          { img: car, name: 'car', type: 'vehicle', cost: data?.vehicle?.price, loanBalance: obj?.carLoan.balance },
           true
         )}
       />
@@ -65,7 +65,11 @@ function Assets({ data, isEnablesell }) {
         isEnablesell={isEnablesell}
         {...allyProps}
         onClick={handleClick.bind(this, 1, false)}
-        onSell={handleClick.bind(this, { img: house, name: 'House' }, true)}
+        onSell={handleClick.bind(
+          this,
+          { img: house, name: 'House', type: 'mortgage', cost: data?.house?.price, loanBalance: obj?.mortgageLoan.balance },
+          true
+        )}
       />
       <AssetCard img="savings" value={data?.chekingAndSavings} {...allyProps} />
       <AssetCard img="retire" value={data?.retirementSavings} {...allyProps} />

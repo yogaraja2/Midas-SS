@@ -14,6 +14,7 @@ function Popup({
   withPadding,
   noClose
 }) {
+   
   return (
     <Dialog
       className={clsx('popup-dialog-container', popupClass)}
