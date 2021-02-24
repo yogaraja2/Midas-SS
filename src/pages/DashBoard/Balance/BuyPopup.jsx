@@ -33,18 +33,18 @@ function BuyPopup({ onClose, type }) {
   // asset lists
   // prettier-ignore
   const cars = [
-        {id: 1, name: 'Relisble  Car', img: 'RelisibleCar', value: 60000},
-        {id: 2, name: 'Economy Car', img: 'EconomyCar', value: 80000},
-        {id: 3, name: 'Full Loaded Car', img: 'FullLoadCar', value: 120000},
-        {id: 4, name: 'Luxury Car', img: 'LuxuryCar', value: 1200000 }
-    ]
+    { id: 1, name: 'Relisble  Car', img: 'RelisibleCar', value: 60000 },
+    { id: 2, name: 'Economy Car', img: 'EconomyCar', value: 80000 },
+    { id: 3, name: 'Full Loaded Car', img: 'FullLoadCar', value: 120000 },
+    { id: 4, name: 'Luxury Car', img: 'LuxuryCar', value: 1200000 }
+  ]
   // prettier-ignore
   const houses = [
-        {id: 1, name: 'Studio Appartment', img: 'StudioApt', value: 60000},
-        {id: 2, name: 'Fixer Upper', img: 'FixerUp', value: 80000},
-        {id: 3, name: 'Rambler', img: 'Rambler', value: 120000},
-        {id: 4, name: 'Mansion', img: 'Mansion', value: 1200000}
-    ]
+    { id: 1, name: 'Studio Appartment', img: 'StudioApt', value: 60000 },
+    { id: 2, name: 'Fixer Upper', img: 'FixerUp', value: 80000 },
+    { id: 3, name: 'Rambler', img: 'Rambler', value: 120000 },
+    { id: 4, name: 'Mansion', img: 'Mansion', value: 1200000 }
+  ]
 
   const [selected, setSelected] = useState(null)
 

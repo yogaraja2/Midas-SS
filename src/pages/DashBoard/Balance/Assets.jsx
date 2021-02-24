@@ -10,12 +10,15 @@ function Assets({ data, obj, isEnablesell }) {
   const house = useSelector(state => state.dreams.house.houseName)
   const car = useSelector(state => state.dreams.car.carName)
 
+  const [isSoldCar, setIsSoldCar] = useState(false)
+  const [isSoldHouse, setIsSoldHouse] = useState(false)
 
   const [confDlg, setConfDlg] = useState({
     status: false,
     data: null,
     isSell: false
   })
+  console.log(confDlg)
 
   const handleClick = (data, isSell) => {
     setConfDlg({
@@ -28,10 +31,13 @@ function Assets({ data, obj, isEnablesell }) {
   const handleDlgClose = () => {
     setConfDlg({
       status: false,
-      data: null,
+      data,
       isSell: false
     })
+    // setIsSoldCar(true)
+    // setIsSoldHouse(true)
   }
+
 
   const size = {
     xs: 6,
@@ -46,10 +52,10 @@ function Assets({ data, obj, isEnablesell }) {
   return (
     <Grid container spacing={3} className="assets-wrap">
       <AssetCard
-        img={car || "FullLoadCar"}
+        img={isSoldCar ? "buyCar" : (car || "FullLoadedCar")}
         value={data?.vehicle?.price}
         isBought
-        isEnablesell={isEnablesell}
+        isEnablesell={isSoldCar ? false : isEnablesell}
         {...allyProps}
         onClick={handleClick.bind(this, 0, false)}
         onSell={handleClick.bind(
@@ -59,7 +65,7 @@ function Assets({ data, obj, isEnablesell }) {
         )}
       />
       <AssetCard
-        img={house || "Rambler"}
+        img={isSoldHouse ? "buyHouse" : (house || "Rambler")}
         value={data?.house?.price}
         isBought
         isEnablesell={isEnablesell}

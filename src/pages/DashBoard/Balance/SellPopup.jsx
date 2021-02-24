@@ -5,29 +5,22 @@ import Popup from '../../../components/Popup'
 import Fetch from '../../../Api'
 import { API } from '../../../config/apis'
 import { Button, Grid } from '@material-ui/core'
+import useFetch from '../../../hooks/useFetch'
 
 function SellPopup({ onClose, data }) {
 
   const img = require(`../../../assets/img/${data.img}.svg`).default
   const values = data;
 
-  useEffect(() => {
-
-    const headers = {
-      Authorization: `Bearer ${localStorage.getItem('midasToken')}`
-    }
-    const params = values;
-
-    Fetch.post(API.gamePlay.sellAsset, params, { headers })
-      .then(res => {
-        console.log(res.data)
-      })
-      .catch(err => {
-        console.log(err.message)
-      })
-
-  }, [])
-
+  const { fetchSell } = useFetch({
+    name: 'sell',
+    method: 'POST',
+    url: API.gamePlay.sellAsset,
+    params: values,
+    initLoad: false,
+    onSuccess: onClose,
+  })
+  // console.log(fetchSell)
 
 
   return (
@@ -44,7 +37,7 @@ function SellPopup({ onClose, data }) {
       <ActionBtn
         className="dlg-action-btn"
         onFail={onClose}
-        onSuccess={onClose}
+        onSuccess={fetchSell}
       />
 
     </Popup>

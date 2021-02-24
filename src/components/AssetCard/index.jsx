@@ -57,7 +57,6 @@ function AssetCard({
             alt="icon"
           />
         )}
-
         <GameCoin
           className="asset-value"
           value={value}
