@@ -16,26 +16,32 @@ function Assets({ data, obj, isEnablesell }) {
   const [confDlg, setConfDlg] = useState({
     status: false,
     data: null,
-    isSell: false
+    isSell: false,
+    type: null,
   })
-  console.log(confDlg)
+  // console.log(confDlg)
 
   const handleClick = (data, isSell) => {
     setConfDlg({
       status: true,
       data,
-      isSell
+      isSell,
+      type: data.name,
     })
   }
 
   const handleDlgClose = () => {
     setConfDlg({
       status: false,
-      data,
-      isSell: false
+      data: null,
+      isSell: false,
+      type: confDlg.type,
     })
-    // setIsSoldCar(true)
-    // setIsSoldHouse(true)
+    if (confDlg.type === 'car') {
+      setIsSoldCar(true)
+    } else {
+      setIsSoldHouse(true)
+    }
   }
 
 
@@ -52,12 +58,13 @@ function Assets({ data, obj, isEnablesell }) {
   return (
     <Grid container spacing={3} className="assets-wrap">
       <AssetCard
-        img={isSoldCar ? "buyCar" : (car || "FullLoadedCar")}
+        name="carCard"
+        img={car || "FullLoadedCar"}
         value={data?.vehicle?.price}
         isBought
         isEnablesell={isSoldCar ? false : isEnablesell}
         {...allyProps}
-        onClick={handleClick.bind(this, 0, false)}
+        onClick={isSoldCar && handleClick.bind(this, 0, false)}
         onSell={handleClick.bind(
           this,
           { img: car, name: 'car', type: 'vehicle', cost: data?.vehicle?.price, loanBalance: obj?.carLoan.balance },
@@ -65,20 +72,21 @@ function Assets({ data, obj, isEnablesell }) {
         )}
       />
       <AssetCard
-        img={isSoldHouse ? "buyHouse" : (house || "Rambler")}
+        name="houseCard"
+        img={house || "Rambler"}
         value={data?.house?.price}
         isBought
-        isEnablesell={isEnablesell}
+        isEnablesell={isSoldHouse ? false : isEnablesell}
         {...allyProps}
-        onClick={handleClick.bind(this, 1, false)}
+        onClick={isSoldHouse && handleClick.bind(this, 1, false)}
         onSell={handleClick.bind(
           this,
           { img: house, name: 'House', type: 'mortgage', cost: data?.house?.price, loanBalance: obj?.mortgageLoan.balance },
           true
         )}
       />
-      <AssetCard img="savings" value={data?.chekingAndSavings} {...allyProps} />
-      <AssetCard img="retire" value={data?.retirementSavings} {...allyProps} />
+      <AssetCard name="savingsCard" img="savings" value={data?.chekingAndSavings} {...allyProps} />
+      <AssetCard name="retireCard" img="retire" value={data?.retirementSavings} {...allyProps} />
       {confDlg.status && confDlg.isSell && isEnablesell && (
         <SellPopup onClose={handleDlgClose} data={confDlg.data} />
       )}

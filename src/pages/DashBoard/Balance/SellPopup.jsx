@@ -6,13 +6,17 @@ import Fetch from '../../../Api'
 import { API } from '../../../config/apis'
 import { Button, Grid } from '@material-ui/core'
 import useFetch from '../../../hooks/useFetch'
+import { setDream } from '../../../redux/Action'
+import { useDispatch, useSelector } from 'react-redux'
 
 function SellPopup({ onClose, data }) {
+
+  const dreams = useSelector(state => state.dreams)
 
   const img = require(`../../../assets/img/${data.img}.svg`).default
   const values = data;
 
-  const { fetchSell } = useFetch({
+  const { fetchSell, sell, isSellLoading, sellError, sellHadResult, sellInitResult, loadSell, setSell } = useFetch({
     name: 'sell',
     method: 'POST',
     url: API.gamePlay.sellAsset,
@@ -20,7 +24,30 @@ function SellPopup({ onClose, data }) {
     initLoad: false,
     onSuccess: onClose,
   })
-  // console.log(fetchSell)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (sellHadResult) {
+      if (sellInitResult.type === 'car') {
+        const dreamsData = {
+          dream: dreams.dream,
+          car: { id: 0, carName: "buyCar", cost: 0 },
+          house: dreams.house,
+        }
+        dispatch(setDream(dreamsData))
+      }
+      else if (sellInitResult.type === 'House') {
+        const dreamsData = {
+          dream: dreams.dream,
+          car: dreams.car,
+          house: { id: 0, houseName: "buyHouse", cost: 0 },
+        }
+        dispatch(setDream(dreamsData))
+      }
+    }
+  }, [sellHadResult])
+
 
 
   return (
@@ -45,3 +72,21 @@ function SellPopup({ onClose, data }) {
 }
 
 export default SellPopup
+
+
+// console.log('fetchSell')
+  // console.log(fetchSell)
+  // console.log('sell')
+  // console.log(sell)
+  // console.log('isSellLoading')
+  // console.log(isSellLoading)
+  // console.log('sellError')
+  // console.log(sellError)
+  // console.log('sellHadResult')
+  // console.log(sellHadResult)
+  // console.log('sellInitResult')
+  // console.log(sellInitResult)
+  // console.log('loadSell')
+  // console.log(loadSell)
+  // console.log('setSell')
+  // console.log(setSell)

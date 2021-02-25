@@ -10,6 +10,7 @@ export const API = {
     },
     balance: '/balancesheet',
     sellAsset: '/sell',
+    buyAssets: '/buyAssets',
     dept: '/deptManagement',
     stats: '/stats'
   },

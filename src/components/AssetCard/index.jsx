@@ -7,6 +7,7 @@ import './style.scss'
 
 function AssetCard({
   className,
+  name,
   size,
   isBought,
   img,
@@ -57,14 +58,17 @@ function AssetCard({
             alt="icon"
           />
         )}
-        <GameCoin
-          className="asset-value"
-          value={value}
-          fontSize={1.5}
-          iconSize={2}
-          weight={700}
-          color={color ?? '#009FFD'}
-        />
+
+        {name === 'savingsCard' || name === 'retireCard' || name === 'buyCard' || isEnablesell ?
+          (<GameCoin
+            className="asset-value"
+            value={value}
+            fontSize={1.5}
+            iconSize={2}
+            weight={700}
+            color={color ?? '#009FFD'}
+          />) : (<span className="buy-option">Buy</span>)}
+
       </Card>
     </Grid>
   )
