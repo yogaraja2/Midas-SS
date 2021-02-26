@@ -61,8 +61,9 @@
     }
 
     .body-wrap {
-      width: 40%;
-      background: rgba(255, 255, 255, 0.5);
+      width: 60%;
+      height: 500px;
+      // background: rgba(255, 255, 255, 0.5);
       border-radius: 5px;
       margin: 0px 50px;
       // display: flex;
@@ -72,36 +73,49 @@
         width: 250px;
       }
 
-      .field-wrap {
-        padding: 10px 15px;
-        margin: 0px 15px;
-        // border-bottom: 1px solid rgb(180, 177, 177);
+      .firstRow,
+      .secRow {
+        display: flex;
+        justify-content: space-around;
 
-        .head-line {
-          font-size: 20px;
-          font-weight: bold;
-          color: #6b2e0a;
-        }
-        .content {
-          margin-top: 5px;
-          font-size: 1.6rem;
-          font-weight: bold;
+        .field-wrap {
+          width: 180px;
+          padding: 30px;
+          // padding: 10px 15px;
+          margin: 5px 15px;
+          background-color: rgba(255, 255, 255, 0.3);
+          border-radius: 10px;
+          align-items: center;
+          // border: 1px solid rgb(180, 177, 177);
 
-          .rank {
-            // margin-right: 5px;
-            img {
-              width: 30px;
-              height: 30px;
-            }
+          .head-line {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6b2e0a;
+            text-align: center;
           }
-          .coin {
-            margin-right: 5px;
-            img {
-              width: 23px;
-              height: 23px;
+          .content {
+            margin-top: 15px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            text-align: center;
+
+            .rank {
+              // margin-right: 5px;
+              img {
+                width: 30px;
+                height: 30px;
+              }
             }
+            .coin {
+              margin-right: 5px;
+              img {
+                width: 23px;
+                height: 23px;
+              }
+            }
+            // color: var(--primary);
           }
-          // color: var(--primary);
         }
       }
     }

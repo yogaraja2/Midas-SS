@@ -6,7 +6,7 @@ import Popup from '../../../components/Popup'
 import { useDispatch, useSelector } from 'react-redux'
 import useFetch from '../../../hooks/useFetch'
 import { API } from '../../../config/apis'
-import { setDream } from '../../../redux/Action'
+import { setDream, setIsCarSold, setIsHouseSold } from '../../../redux/Action'
 
 const BuyingCard = ({ data, selected, handleClick }) => {
   const allyProps = {
@@ -41,17 +41,17 @@ function BuyPopup({ onClose, type }) {
   // asset lists
   // prettier-ignore
   const cars = [
-    { id: 1, type: 'Vehicle', name: 'Relisble  Car', img: 'RelisibleCar', cost: 60000 },
-    { id: 2, type: 'Vehicle', name: 'Economy Car', img: 'EconomyCar', cost: 80000 },
-    { id: 3, type: 'Vehicle', name: 'Full Loaded Car', img: 'FullLoadCar', cost: 120000 },
-    { id: 4, type: 'Vehicle', name: 'Luxury Car', img: 'LuxuryCar', cost: 1200000 }
+    { id: 1, type: 'Vehicle', name: 'Relisble  Car', img: 'RelisibleCar', cost: 5000 },
+    { id: 2, type: 'Vehicle', name: 'Economy Car', img: 'EconomyCar', cost: 12000 },
+    { id: 3, type: 'Vehicle', name: 'Full Loaded Car', img: 'FullLoadCar', cost: 20000 },
+    { id: 4, type: 'Vehicle', name: 'Luxury Car', img: 'LuxuryCar', cost: 27000 }
   ]
   // prettier-ignore
   const houses = [
-    { id: 1, type: 'House', name: 'Studio Appartment', img: 'StudioApt', cost: 60000 },
-    { id: 2, type: 'House', name: 'Fixer Upper', img: 'FixerUp', cost: 80000 },
-    { id: 3, type: 'House', name: 'Rambler', img: 'Rambler', cost: 120000 },
-    { id: 4, type: 'House', name: 'Mansion', img: 'Mansion', cost: 1200000 }
+    { id: 1, type: 'House', name: 'Studio Appartment', img: 'StudioApt', cost: 100000 },
+    { id: 2, type: 'House', name: 'Fixer Upper', img: 'FixerUp', cost: 170000 },
+    { id: 3, type: 'House', name: 'Rambler', img: 'Rambler', cost: 230000 },
+    { id: 4, type: 'House', name: 'Mansion', img: 'Mansion', cost: 310000 }
   ]
 
   const dispatch = useDispatch()
@@ -76,9 +76,8 @@ function BuyPopup({ onClose, type }) {
           car: buyInitResult,
           house: dreams.house,
         }
-        // console.log('test')
-        // console.log(dreamsData)
         dispatch(setDream(dreamsData))
+        dispatch(setIsCarSold(false))
       }
       else if (selected.type === 'House') {
         const dreamsData = {
@@ -87,6 +86,7 @@ function BuyPopup({ onClose, type }) {
           house: buyInitResult,
         }
         dispatch(setDream(dreamsData))
+        dispatch(setIsHouseSold(false))
       }
     }
   }, [buyHadResult])

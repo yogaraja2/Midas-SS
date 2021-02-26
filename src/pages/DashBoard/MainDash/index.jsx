@@ -112,47 +112,52 @@ function MainDash() {
                 </div>
             </div>
             <div className="body-wrap">
-                <div className="field-wrap">
-                    <div className="head-line">Name</div>
-                    <div className="content">{details?.name}</div>
-                </div>
-                <div className="field-wrap">
-                    <div className="head-line">Rank</div>
-                    <div className="content">
-                        <span className="rank"><img
-                            src={require('../../../assets/img/rank.svg').default} alt="rank" /></span>
-                        {details?.leaderBoardRank}
+
+                <div className="firstRow">
+                    <div className="field-wrap">
+                        <div className="head-line">Name</div>
+                        <div className="content">{details?.name}</div>
+                    </div>
+                    <div className="field-wrap">
+                        <div className="head-line">Rank</div>
+                        <div className="content">
+                            <span className="rank"><img
+                                src={require('../../../assets/img/rank.svg').default} alt="rank" /></span>
+                            {details?.leaderBoardRank}
+                        </div>
+                    </div>
+                    <div className="field-wrap">
+                        <div className="head-line">Score</div>
+                        <div className="content">
+                            <span className="coin"><img src={pointIcon} alt='points' /></span>
+                            {details?.totalScore}
+                        </div>
                     </div>
                 </div>
-                <div className="field-wrap">
-                    <div className="head-line">Score</div>
-                    <div className="content">
-                        <span className="coin"><img src={pointIcon} alt='points' /></span>
-                        {details?.totalScore}
-                    </div>
-                </div>
-                <div className="field-wrap">
-                    <div className="head-line">Cash Available</div>
-                    <div className="content">
-                        <span className="coin"><img
-                            src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
+                <div className="secRow">
+                    <div className="field-wrap">
+                        <div className="head-line">Cash Available</div>
+                        <div className="content">
+                            <span className="coin"><img
+                                src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
                             ${details?.cashAvailable}
+                        </div>
                     </div>
-                </div>
-                <div className="field-wrap">
-                    <div className="head-line">Retirement Savings</div>
-                    <div className="content">
-                        <span className="coin"><img
-                            src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
+                    <div className="field-wrap">
+                        <div className="head-line">Retirement Savings</div>
+                        <div className="content">
+                            <span className="coin"><img
+                                src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
                         ${details?.retirementSavings}
+                        </div>
                     </div>
-                </div>
-                <div className="field-wrap">
-                    <div className="head-line">Networth</div>
-                    <div className="content">
-                        <span className="coin"><img
-                            src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
+                    <div className="field-wrap">
+                        <div className="head-line">Networth</div>
+                        <div className="content">
+                            <span className="coin"><img
+                                src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
                         ${details?.networth}
+                        </div>
                     </div>
                 </div>
             </div>

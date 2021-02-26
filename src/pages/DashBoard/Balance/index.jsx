@@ -46,7 +46,7 @@ function Balance() {
 
       <div className="asset-bal-det">
         <h2 className="sec-head">Assets</h2>
-        <Assets data={currentData?.assets} obj={currentData?.liabilities} isEnablesell={(dataYear === currentData?.currentTurn) ? true : false} />
+        <Assets data={currentData?.assets} lbty={currentData?.liabilities} isEnablesell={(dataYear === currentData?.currentTurn) ? true : false} />
         <HighlightCard
           className="asset-tot"
           label="Total Assets"

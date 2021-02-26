@@ -6,7 +6,7 @@ import Fetch from '../../../Api'
 import { API } from '../../../config/apis'
 import { Button, Grid } from '@material-ui/core'
 import useFetch from '../../../hooks/useFetch'
-import { setDream } from '../../../redux/Action'
+import { setDream, setIsCarSold, setIsHouseSold, setSoldCar, setSoldHouse } from '../../../redux/Action'
 import { useDispatch, useSelector } from 'react-redux'
 
 function SellPopup({ onClose, data }) {
@@ -29,6 +29,8 @@ function SellPopup({ onClose, data }) {
 
   useEffect(() => {
     if (sellHadResult) {
+      // console.log('result')
+      // console.log(values)
       if (sellInitResult.type === 'car') {
         const dreamsData = {
           dream: dreams.dream,
@@ -36,6 +38,8 @@ function SellPopup({ onClose, data }) {
           house: dreams.house,
         }
         dispatch(setDream(dreamsData))
+        dispatch(setIsCarSold(true))
+        dispatch(setSoldCar(values.img))
       }
       else if (sellInitResult.type === 'House') {
         const dreamsData = {
@@ -44,6 +48,8 @@ function SellPopup({ onClose, data }) {
           house: { id: 0, houseName: "buyHouse", cost: 0 },
         }
         dispatch(setDream(dreamsData))
+        dispatch(setIsHouseSold(true))
+        dispatch(setSoldHouse(values.img))
       }
     }
   }, [sellHadResult])

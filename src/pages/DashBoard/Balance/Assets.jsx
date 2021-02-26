@@ -1,32 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid } from '@material-ui/core'
 import AssetCard from '../../../components/AssetCard'
 import SellPopup from './SellPopup'
 import BuyPopup from './BuyPopup'
 import { useSelector } from 'react-redux'
 
-function Assets({ data, obj, isEnablesell }) {
+function Assets({ data, lbty, isEnablesell }) {
 
   const house = useSelector(state => state.dreams.house.houseName)
   const car = useSelector(state => state.dreams.car.carName)
 
-  const [isSoldCar, setIsSoldCar] = useState(false)
-  const [isSoldHouse, setIsSoldHouse] = useState(false)
+  const assets = useSelector(state => state.assets)
+  // console.log(assets)
+  const [isSoldCar, setIsSoldCar] = useState(assets.isSoldCar)
+  const [isSoldHouse, setIsSoldHouse] = useState(assets.isSoldHouse)
+
+  useEffect(() => {
+    setIsSoldCar(assets.isSoldCar)
+    setIsSoldHouse(assets.isSoldHouse)
+  }, [assets])
 
   const [confDlg, setConfDlg] = useState({
     status: false,
     data: null,
     isSell: false,
-    type: null,
   })
-  // console.log(confDlg)
 
   const handleClick = (data, isSell) => {
     setConfDlg({
       status: true,
       data,
       isSell,
-      type: data.name,
     })
   }
 
@@ -35,13 +39,7 @@ function Assets({ data, obj, isEnablesell }) {
       status: false,
       data: null,
       isSell: false,
-      type: confDlg.type,
     })
-    if (confDlg.type === 'car') {
-      setIsSoldCar(true)
-    } else {
-      setIsSoldHouse(true)
-    }
   }
 
 
@@ -62,12 +60,13 @@ function Assets({ data, obj, isEnablesell }) {
         img={car || "FullLoadedCar"}
         value={data?.vehicle?.price}
         isBought
-        isEnablesell={isSoldCar ? false : isEnablesell}
+        isSoldCar={isSoldCar}
+        isEnablesell={car !== 'buyCar' ? isEnablesell : false}
         {...allyProps}
-        onClick={isSoldCar && handleClick.bind(this, 0, false)}
+        onClick={car === 'buyCar' && isEnablesell && handleClick.bind(this, 0, false)}
         onSell={handleClick.bind(
           this,
-          { img: car, name: 'car', type: 'vehicle', cost: data?.vehicle?.price, loanBalance: obj?.carLoan.balance },
+          { img: car, name: 'car', type: 'vehicle', cost: data?.vehicle?.price, loanBalance: lbty?.carLoan.balance },
           true
         )}
       />
@@ -76,12 +75,13 @@ function Assets({ data, obj, isEnablesell }) {
         img={house || "Rambler"}
         value={data?.house?.price}
         isBought
-        isEnablesell={isSoldHouse ? false : isEnablesell}
+        isSoldHouse={isSoldHouse}
+        isEnablesell={house !== 'buyHouse' ? isEnablesell : false}
         {...allyProps}
-        onClick={isSoldHouse && handleClick.bind(this, 1, false)}
+        onClick={house === 'buyHouse' && isEnablesell && handleClick.bind(this, 1, false)}
         onSell={handleClick.bind(
           this,
-          { img: house, name: 'House', type: 'mortgage', cost: data?.house?.price, loanBalance: obj?.mortgageLoan.balance },
+          { img: house, name: 'House', type: 'mortgage', cost: data?.house?.price, loanBalance: lbty?.mortgageLoan.balance },
           true
         )}
       />

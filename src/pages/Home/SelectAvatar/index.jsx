@@ -106,7 +106,7 @@ function SelectAvatar() {
     const auth = 'Bearer '.concat(token)
 
     const goToSelectDream = (initialValues) => {
-        console.log(initialValues)
+        // console.log(initialValues)
         dispatch(setAvatarId(initialValues))
 
 
