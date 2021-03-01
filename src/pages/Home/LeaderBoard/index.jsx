@@ -93,9 +93,11 @@ function LeaderBoard() {
             </tbody>
           </table>
         </Grid>
+
         <div className="btn-wrap">
           <Button className="back-btn" onClick={goToHome}>Back </Button>
         </div>
+        
       </Grid>
     </div>
   )

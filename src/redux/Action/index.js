@@ -137,6 +137,34 @@ export const setStudentDetail = (value) => {
     }
 }
 
+export const setIsHouseSold = (value) => {
+    return {
+        type: 'SET_IS_HOUSE_SOLD',
+        payload: value,
+    }
+}
+
+export const setIsCarSold = (value) => {
+    return {
+        type: 'SET_IS_CAR_SOLD',
+        payload: value,
+    }
+}
+
+export const setSoldHouse = (value) => {
+    return {
+        type: 'SET_SOLD_HOUSE',
+        payload: value,
+    }
+}
+
+export const setSoldCar = (value) => {
+    return {
+        type: 'SET_SOLD_CAR',
+        payload: value,
+    }
+}
+
 
 
 

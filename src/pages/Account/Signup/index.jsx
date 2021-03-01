@@ -43,7 +43,7 @@ function Signup() {
         setCountry(data.country_name)
       })
       .catch((err) => {
-        console.log(err.message)
+        // console.log(err.message)
       })
   }
 
@@ -70,9 +70,9 @@ function Signup() {
   const [count, setCount] = useState(false)
 
   const handleSignup = (data) => {
-    // console.log(data)
+    
     if (data.password !== data.confirmPassword) {
-      console.log('wrong password')
+      // console.log('wrong password')
       setMessage("Incorrect password, please enter valid password")
       setError(true)
     }
@@ -88,8 +88,6 @@ function Signup() {
 
       API.post(URL.signup, reqData)
         .then((res) => {
-          console.log('response below')
-          console.log(res)
           const { data } = res
           dispatch(setResponseData(data)) // dispatching action to store a.k.a: Provider page
           setResponse(data)
@@ -113,8 +111,6 @@ function Signup() {
           }
         })
         .catch((err) => {
-          console.log('error section')
-          console.log(err)
           setMessage(err.message)
           setCount(true)
         })
@@ -138,9 +134,6 @@ function Signup() {
     if (reason === 'clickaway') {
       return
     }
-    // if (message === 'Created successfully...Please do signin') {
-    //   history.push(`${getOriginPath(commonRoute.account)}/login`)
-    // }
     if (detail?.token) {
       history.push(`${getOriginPath(commonRoute.account)}/selectRole`)
     }

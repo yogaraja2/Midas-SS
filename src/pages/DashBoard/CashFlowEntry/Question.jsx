@@ -2,7 +2,7 @@ import React from 'react'
 import { TextField } from '@material-ui/core'
 
 function Question({ data, values, setValues }) {
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target
 
@@ -25,6 +25,7 @@ function Question({ data, values, setValues }) {
             value={values[i.name]}
             type="number"
             onChange={handleChange}
+            disabled={!i.isEnable}
           />
         ))}
       </div>

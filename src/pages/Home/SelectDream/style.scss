@@ -30,6 +30,11 @@
         height: 160px;
         position: relative;
 
+        @include w400 {
+          width: 160px;
+          height: 120px;
+        }
+
         .image-warp {
           @include flexCenter;
           background: #fff;
@@ -43,6 +48,11 @@
           img {
             max-width: 150px;
             max-height: 130px;
+
+            @include w400 {
+              max-width: 80px;
+              max-height: 60px;
+            }
           }
         }
 

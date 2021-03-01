@@ -1,18 +1,22 @@
 @import '../../../mixins/common';
 
 .leader-board-card {
-  position: fixed !important;
-  bottom: 3vh;
-  background: var(--bg-panel-card);
-  width: 80vw;
-  height: 80vh;
   position: relative;
-  // overflow: auto;
+  background: var(--bg-panel-card);
+  width: 90vw;
+  height: 90vh;
+  overflow: auto;
   display: flex;
   flex-direction: column;
-  // background-color: #c51f7a;
+  
+  @include w600 {
+    width: 97%;
+    height: 97%;
+  }
 
   .leader-board-container {
+    margin: auto 0px;
+    
     .top-three-players {
       display: flex;
       justify-content: space-between;
@@ -26,50 +30,58 @@
         width: 225px;
         border-radius: 10px;
         padding: 2px;
-        .player-border {
-          margin-left: auto;
-          margin-right: auto;
-          margin-bottom: 10px;
-          margin-top: -50px;
-          border-radius: 60px;
-          width: 110px;
-          height: 110px;
-          .player-image {
-            height: 10px;
-            width: 10px;
-            position: relative;
-            .image-warp {
-              @include flexCenter;
-              position: relative;
-              top: 12px;
-              left: 12px;
-              right: 12px;
-              bottom: 12px;
-              margin-left: 20px;
-              img {
-                max-width: 75px;
-                max-height: 75px;
-                display: inline-block;
-                margin-left: auto;
-                margin-right: auto;
-              }
-            }
-          }
-          .player-place {
-            margin-left: 80px;
-            margin-top: -10px;
-          }
+
+        @include w960 {
+          height: 180px;
+          width: 180px;
         }
+
+        @include w600 {
+          height: 120px;
+          width: 120px;
+        }
+
+        @include w400 {
+          height: 120px;
+          width: 95px;
+        }
+
         .player-place {
           width: 100%;
+
           img {
             margin: 0 70px;
+
+            @include w960 {
+              width: 120px;
+              height: 100px;
+              margin: 0 25px;
+            }
+
+            @include w600 {
+              width: 80px;
+              height: 70px;
+            }
+
+            @include w400 {
+              width: 50px;
+              height: 60px;
+            }
           }
         }
+
         .player-label {
           font-size: 1.4em;
           font-weight: bold;
           text-align: center;
+
+          @include w960 {
+            font-size: 1.5em;
+          }
+
+          @include w600 {
+            font-size: 1.2em;
+          }
         }
 
         .player-points {
@@ -78,11 +90,15 @@
           font-weight: bold;
           text-align: center;
           color: #009ffd;
-        }
 
-        .player-position {
-          @include flexCenter;
-          margin-top: 20px;
+          @include w960 {
+            margin-top: 3px;
+            font-size: 1.6em;
+          }
+          @include w600 {
+            margin-top: 3px;
+            font-size: 1.2em;
+          }
         }
       }
     }
@@ -92,17 +108,16 @@
       margin-top: 2%;
       overflow: auto;
       max-height: calc(100vh - 475px);
-      overflow: auto;
 
       .leader-board-table {
         width: 100%;
         border-radius: 15px;
         background-color: white;
         border-collapse: collapse;
-        // table-layout: fixed;
+        table-layout: fixed;
 
         .table-heading {
-          position: sticky;
+          // position: sticky;
           .title {
             font-size: 1.5em;
             font-weight: bold;
@@ -110,7 +125,6 @@
           }
           .table-body {
             .table-rows {
-              // text-align: center;
               font-size: 1.3em;
               opacity: 0.9;
             }
@@ -133,9 +147,11 @@
       .back-btn {
         @include button;
       }
-      @include w320 {
-        position: static;
+
+      @include w960 {
+        position: absolute;
         margin-top: 16px;
+        left: 20px;
       }
     }
   }

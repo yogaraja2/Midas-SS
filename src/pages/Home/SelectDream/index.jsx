@@ -98,7 +98,8 @@ const SelectHouse = ({ label, imgUrl, cost, name, id, houses, setHouses }) => {
 function SelectDreams() {
 
     const dreamsCollection = useSelector(state => state.dreams)
-    console.log(dreamsCollection)
+    const dashboard = useSelector(state => state.dashboard)
+    // console.log(dreamsCollection)
 
     const dispatch = useDispatch()
 
@@ -124,7 +125,7 @@ function SelectDreams() {
 
     const goToDashboard = (initialValues) => {
 
-        console.log(initialValues)
+        // console.log(initialValues)
         dispatch(setDream(initialValues))
 
         API.post(URL.dreamSelection, initialValues, {
@@ -133,12 +134,18 @@ function SelectDreams() {
             }
         })
             .then((res) => {
-                console.log(res)
+                // console.log(res)
                 dispatch(setPageNo(3))
-                history.push(commonRoute.dashboard.mainDash)
+                if (dashboard.currentTurn === 0) {
+                    history.push(commonRoute.dashboard.mainDash)
+                }
+                else if (dashboard.currentTurn === 1) {
+                    history.push(commonRoute.dashboard.cashFlow)
+                }
+
             })
             .catch((err) => {
-                console.log(err)
+                // console.log(err)
             })
     }
 

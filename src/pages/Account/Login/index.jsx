@@ -9,7 +9,7 @@ import { commonRoute } from '../../../config/routes'
 import { getOriginPath } from '../../../utils/commonFunctions'
 import API, { URL } from '../../../Api'
 import SnackBar from '../../../components/SnackBar'
-import { setLoginData, setAvatarId, setCurrentTurn, setNetworth, setSavingsAmt, setSurplusAmt, setPageNo } from '../../../redux/Action'
+import { setLoginData, setDream, setAvatarId, setCurrentTurn, setNetworth, setSavingsAmt, setSurplusAmt, setPageNo } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 
 function Login() {
@@ -36,7 +36,7 @@ function Login() {
       .then((res) => {
 
         const { data } = res
-        console.log(data)
+        // console.log(data)
         dispatch(setLoginData(data))
         setResponse(data)
         setCount(true)
@@ -76,7 +76,7 @@ function Login() {
   const allyProps = { control, error: errors }
 
   function handleOnClose() {
-    
+
     if (response?.role === 'Individual' || response?.role === 'Student') {
       if (response?.pageNo === 1) {
         history.push(commonRoute.gameOptions)
@@ -93,6 +93,7 @@ function Login() {
           gameMode: response.gameMode
         }
         dispatch(setAvatarId(avatarData))
+        dispatch(setDream(response.dreams))
         dispatch(setCurrentTurn(response.currentTurn))
         dispatch(setNetworth(response.networth))
         dispatch(setSurplusAmt(response.savingsAvailable))

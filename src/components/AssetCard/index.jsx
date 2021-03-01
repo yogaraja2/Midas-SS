@@ -7,6 +7,7 @@ import './style.scss'
 
 function AssetCard({
   className,
+  name,
   size,
   isBought,
   img,
@@ -16,7 +17,9 @@ function AssetCard({
   transparent,
   onClick,
   onSell,
-  isEnablesell
+  isEnablesell,
+  isSoldCar,
+  isSoldHouse,
 }) {
   const handleSell = (e) => {
     e.stopPropagation()
@@ -44,7 +47,7 @@ function AssetCard({
         transparent={transparent}
         onClick={handleClick}
       >
-        {isBought && isEnablesell && (
+        {isEnablesell && (
           <div className="sell-sign" onClick={handleSell}>
             Sell
           </div>
@@ -58,14 +61,26 @@ function AssetCard({
           />
         )}
 
-        <GameCoin
-          className="asset-value"
-          value={value}
-          fontSize={1.5}
-          iconSize={2}
-          weight={700}
-          color={color ?? '#009FFD'}
-        />
+        {name === 'savingsCard' || name === 'retireCard' || name === 'buyCard' || isEnablesell ?
+          (<GameCoin
+            className="asset-value"
+            value={value}
+            fontSize={1.5}
+            iconSize={2}
+            weight={700}
+            color={color ?? '#009FFD'}
+          />) : isSoldCar || isSoldHouse ? (<span className="buy-option">Buy</span>) :
+            (<GameCoin
+              className="asset-value"
+              value={value}
+              fontSize={1.5}
+              iconSize={2}
+              weight={700}
+              color={color ?? '#009FFD'}
+            />)
+
+        }
+
       </Card>
     </Grid>
   )

@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom'
 import Textfield from '../../../components/Textfield'
 import SnackBar from '../../../components/SnackBar'
 import API, { URL } from '../../../Api'
-import { setAvatarId,setPageNo } from '../../../redux/Action'
+import { setAvatarId, setPageNo } from '../../../redux/Action'
 import { useDispatch } from 'react-redux'
 
 const AvatarOptions = ({ label, imgUrl, id, avatar, setAvatar }) => {
@@ -106,9 +106,8 @@ function SelectAvatar() {
     const auth = 'Bearer '.concat(token)
 
     const goToSelectDream = (initialValues) => {
-        console.log(initialValues)
+        // console.log(initialValues)
         dispatch(setAvatarId(initialValues))
-
 
         API.post(URL.gameDetails, initialValues, {
             headers: {
@@ -119,9 +118,6 @@ function SelectAvatar() {
                 setResponse(res)
                 dispatch(setPageNo(2))
                 history.push(commonRoute.selectDreams)
-                // if (response?.status) {
-                //     history.push(commonRoute.selectDreams)
-                // }
             })
             .catch((err) => {
                 console.log(err.message)
@@ -129,9 +125,6 @@ function SelectAvatar() {
             })
     }
 
-    // const handleIncomeValueChanges = (e) => {
-    //     setIncome(+e.target.value)
-    // }
 
     function handleOnClose(reason) {
         if (reason === 'clickaway') {

@@ -189,7 +189,7 @@ function SelectRole() {
                         id="instructorId"
                         name="instructorId"
                         className="instructor-field"
-                        label="Choose Your Instructor (Optional)"
+                        label="Choose Your Instructor"
                         list={selectedInstructor ? selectedInstructor : instructors}
                         onChange={(e) => setDefaults({ ...defaults, instructorId: e.target.value })}
                         placeholder="Select"
@@ -211,7 +211,7 @@ function SelectRole() {
                         {...otherProps}
                     />
                 </div>
-                <div className="form-field">
+                {/* <div className="form-field">
                     <FormDropdown
                         id="subscription"
                         name="subscription"
@@ -224,7 +224,7 @@ function SelectRole() {
                         disabled={!(defaults.role === 'School_Admin') ? true : false}
                         {...otherProps}
                     />
-                </div>
+                </div> */}
 
                 <div className="form-btns">
                     <Button type="submit" className="signin-btn">

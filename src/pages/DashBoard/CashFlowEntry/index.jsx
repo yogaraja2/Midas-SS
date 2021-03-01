@@ -27,6 +27,11 @@ function CashFlowEntry(props) {
 
   const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const cashflowValues = useSelector(state => state.cashFlowValues)
+  const balancesheet = useSelector(state => state.balancesheetData)
+
+  const loanData = balancesheet?.filter((item) => item.year === currentTurn - 1)[0]
+  const liability = loanData?.liabilities;
+  console.log(liability)
 
   const surplusAmt = useSelector(state => state.dashboard.surplusAmt)
   const savingAmt = useSelector(state => state.dashboard.savingsAmt)
@@ -42,21 +47,21 @@ function CashFlowEntry(props) {
       id: 1,
       question: 'How much would you like to spend this year on?',
       fields: [
-        { id: 1, name: 'livingExpenses', label: 'Living Expenses' },
-        { id: 2, name: 'entertainment', label: 'Entertainment' },
-        { id: 3, name: 'retirementSavings', label: 'Retirement Savings' }
+        { id: 1, name: 'livingExpenses', label: 'Living Expenses', isEnable: true, },
+        { id: 2, name: 'entertainment', label: 'Entertainment', isEnable: true, },
+        { id: 3, name: 'retirementSavings', label: 'Retirement Savings', isEnable: true, }
       ]
     },
     {
       id: 2,
       question:
-        'How much extra would you like to spend this year repaying to spend this year repaying these debts?',
+        'How much extra would you like to spend this year repaying these debts?',
       fields: [
-        { id: 1, name: 'creditCard', label: 'Credit Card' },
-        { id: 2, name: 'carLoan', label: 'Car Loan' },
-        { id: 3, name: 'studentLoan', label: 'Student Loan' },
-        { id: 4, name: 'mortgage', label: 'Mortgage' },
-        { id: 5, name: 'personalLoan', label: 'Personal Loan' }
+        { id: 1, name: 'creditCard', label: 'Credit Card', isEnable: liability?.creditLoan.balance > 0 ? true : false, },
+        { id: 2, name: 'carLoan', label: 'Car Loan', isEnable: liability?.carLoan.balance > 0 ? true : false, },
+        { id: 3, name: 'mortgage', label: 'Mortgage', isEnable: liability?.mortgageLoan.balance > 0 ? true : false, },
+        { id: 4, name: 'studentLoan', label: 'Student Loan', isEnable: liability?.studentLoan.balance > 0 ? true : false, },
+        { id: 5, name: 'personalLoan', label: 'Personal Loan', isEnable: liability?.personalLoan > 0 ? true : false, }
       ]
     }
   ]
@@ -113,26 +118,19 @@ function CashFlowEntry(props) {
 
     Fetch.post(API.gamePlay.cashFlow.entry, params, { headers })
       .then((res) => {
-        console.log('cashflow response ')
-        console.log(res)
-        console.log('response data')
-        console.log(res.data)
 
         if (res.status === 200) {
           dispatch(setCashFlowApiData(res.data))
           if (res.data.status >= 400) {
-            // setError('Something went wrong !!!')
+            // setError('Your Expenses crossed your credit limit !!!')
             setError(res.data.message)
+            // props.history.push(commonRoute.gameOptions)
           }
           else {
             props.history.push({
-              pathname: commonRoute.dashboard.cashFlowInfo,
-              state: {
-                data: res.data
-              }
+              pathname: commonRoute.dashboard.cashFlowInfo
             })
           }
-
         }
         else {
           setError('Something went wrong !!!')
@@ -224,7 +222,7 @@ function CashFlowEntry(props) {
       <SnackBar
         openDialog={!!error}
         message={error}
-        severity="Error"
+        severity="info"
         onclose={setError.bind(this, null)}
       />
     </div>

@@ -5,16 +5,19 @@ export const API = {
     cashFlow: {
       entry: '/cashflow',
       nextTurn: '/nextTurn',
-      newGame: 'newGame',
+      history: '/history',
+      newGame: '/newGame',
     },
     balance: '/balancesheet',
+    sellAsset: '/sell',
+    buyAssets: '/buyAssets',
     dept: '/deptManagement',
     stats: '/stats'
   },
 
   listApi: {
     instructorsList: '/instructorList',
-    studentsList: 'studentList',
+    studentsList: '/studentList',
     studentDetail: '/studentDetails'
   }
 }

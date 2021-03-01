@@ -4,7 +4,10 @@ import { commonRoute } from '../../../config/routes'
 import { useHistory } from 'react-router-dom'
 import clsx from 'clsx'
 import './style.scss'
-import { useSelector } from 'react-redux'
+import { API } from '../../../config/apis'
+import Fetch from '../../../Api'
+import { setNewGame, setPageNo } from '../../../redux/Action'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Options = ({ label, imgUrl, id, selected, setSelected }) => {
   return (
@@ -28,16 +31,15 @@ const Options = ({ label, imgUrl, id, selected, setSelected }) => {
 }
 
 function GameControl() {
+
+  const dispatch = useDispatch();
+
   const [selected, setSelected] = useState('new')
-  const [isLogged, setIsLogged] = useState(false)
+
   // const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const pageNo = useSelector(state => state.pageNo)
 
   const [page, setPage] = useState(pageNo)
-
-  // useEffect(() => {
-  //   currentTurn > 1 && setIsLogged(true)
-  // }, [])
 
   useEffect(() => {
     setPage(pageNo)
@@ -47,11 +49,29 @@ function GameControl() {
   const history = useHistory()
 
   const clickHandler = () => {
+
     if (selected === 'leaderboard') {
       history.push(commonRoute.leaderboard)
-    } else if (selected == 'new') {
-      history.push(commonRoute.selectAvatar)
-    } else {
+    } 
+    else if (selected == 'new') {
+      // const headers = {
+      //   Authorization: `Bearer ${localStorage.getItem('midasToken')}`
+      // }
+      // Fetch.get(API.gamePlay.cashFlow.newGame, { headers })
+      //   .then(res => {
+      //     // console.log(res.data)
+      //     if (res.status === 200) {
+      //       dispatch(setNewGame())
+      //       dispatch(setPageNo(0))
+      //       history.push(commonRoute.selectAvatar)
+      //     }
+      //   })
+      //   .catch(err => {
+      //     // console.log(err.message)
+      //   })
+        history.push(commonRoute.selectAvatar)
+    } 
+    else {
       history.push(commonRoute.dashboard.mainDash)
     }
   }
