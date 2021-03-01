@@ -6,11 +6,16 @@
     position: relative;
     margin: auto;
     // right: 20px;
-    // bottom: 50px;
+    bottom: 30px;
+    @include w960 {
+      width: 90%;
+    }
 
     .select-wrap-card {
+      width: 100%;
       border-radius: 20px;
       background: white;
+
       .select-wrap {
         display: flex;
         flex-direction: 'row';
