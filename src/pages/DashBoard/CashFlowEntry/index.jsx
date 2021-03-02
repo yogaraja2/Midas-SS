@@ -90,9 +90,6 @@ function CashFlowEntry(props) {
     dispatch(setEventsCost(events))
   }
 
-  // console.log('eve')
-  // console.log(events)
-
   const handleSubmit = () => {
     const headers = {
       Authorization: `Bearer ${localStorage.getItem('midasToken')}`
@@ -112,9 +109,6 @@ function CashFlowEntry(props) {
     }
 
     dispatch(setCashflowValues(params))
-
-    // console.log('params')
-    // console.log(params)
 
     Fetch.post(API.gamePlay.cashFlow.entry, params, { headers })
       .then((res) => {

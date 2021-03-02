@@ -8,7 +8,7 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  
+
   @include w600 {
     width: 97%;
     height: 97%;
@@ -16,7 +16,7 @@
 
   .leader-board-container {
     margin: auto 0px;
-    
+
     .top-three-players {
       display: flex;
       justify-content: space-between;
@@ -107,14 +107,15 @@
       position: relative;
       margin-top: 2%;
       overflow: auto;
-      max-height: calc(100vh - 475px);
+      
 
       .leader-board-table {
         width: 100%;
         border-radius: 15px;
         background-color: white;
         border-collapse: collapse;
-        table-layout: fixed;
+        // table-layout: fixed;
+        max-height: calc(100vh - 475px);
 
         .table-heading {
           // position: sticky;

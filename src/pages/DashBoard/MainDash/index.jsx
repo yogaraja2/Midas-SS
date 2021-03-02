@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './styles.scss'
 import { Grid } from '@material-ui/core'
 import pointIcon from '../../../assets/img/pointsIcon.svg'
+import dollar from '../../../assets/img/doller 2.svg'
+import rankImg from '../../../assets/img/rank.svg'
 import { useHistory, useLocation } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { useSelector, useDispatch } from 'react-redux'
@@ -111,70 +113,74 @@ function MainDash() {
                     </div>
                 </div>
             </div>
-            <div className="body-wrap">
 
+            <div className="body-wrap">
                 <div className="firstRow">
                     <div className="field-wrap">
-                        <div className="head-line">Name</div>
-                        <div className="content">{details?.name}</div>
-                    </div>
-                    <div className="field-wrap">
-                        <div className="head-line">Rank</div>
-                        <div className="content">
-                            <span className="rank"><img
-                                src={require('../../../assets/img/rank.svg').default} alt="rank" /></span>
-                            {details?.leaderBoardRank}
+                        <div className="fields">
+                            <div className="head-line">Name</div>
+                            <div className="content">{details?.name}</div>
                         </div>
                     </div>
                     <div className="field-wrap">
-                        <div className="head-line">Score</div>
-                        <div className="content">
-                            <span className="coin"><img src={pointIcon} alt='points' /></span>
-                            {details?.totalScore}
+                        <div className="fields">
+                            <div className="head-line">Rank</div>
+                            <div className="content">
+                                <span className="rank"><img src={rankImg} alt="rank" />{details?.leaderBoardRank}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="field-wrap">
+                        <div className="fields">
+                            <div className="head-line">Score</div>
+                            <div className="content">
+                                <span className="coin"><img src={pointIcon} alt='points' />&nbsp;{details?.totalScore}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="secRow">
                     <div className="field-wrap">
-                        <div className="head-line">Cash Available</div>
-                        <div className="content">
-                            <span className="coin"><img
-                                src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
-                            ${details?.cashAvailable}
+                        <div className="fields">
+                            <div className="head-line">Cash Available</div>
+                            <div className="content">
+                                <span className="coin"><img src={dollar} alt="Coin" />&nbsp;${details?.cashAvailable}</span>
+                            </div>
                         </div>
                     </div>
                     <div className="field-wrap">
-                        <div className="head-line">Retirement Savings</div>
-                        <div className="content">
-                            <span className="coin"><img
-                                src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
-                        ${details?.retirementSavings}
+                        <div className="fields">
+                            <div className="head-line">Retirement Savings</div>
+                            <div className="content">
+                                <span className="coin"><img src={dollar} alt="Coin" />&nbsp;${details?.retirementSavings}</span>
+                            </div>
                         </div>
                     </div>
                     <div className="field-wrap">
-                        <div className="head-line">Networth</div>
-                        <div className="content">
-                            <span className="coin"><img
-                                src={require('../../../assets/img/doller 2.svg').default} alt="Coin" /></span>
-                        ${details?.networth}
+                        <div className="fields">
+                            <div className="head-line">Networth</div>
+                            <div className="content">
+                                <span className="coin"><img src={dollar} alt="Coin" />&nbsp;${details?.networth}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div className="footer-wrap">
-                <div className="btn-wrap" onClick={goToLeaderBoard}>
+                <div className="ld-btn-wrap" onClick={goToLeaderBoard}>
                     <div className="leaderboard-btn">View Leaderboard</div>
                 </div>
 
                 {currentTurn !== gameLength ? (
-                    <div className="btn-wrap" onClick={goToNextTurn}>
+                    <div className="turn-btn-wrap" onClick={goToNextTurn}>
                         <div className="nxt-turn-btn">
                             <img src={require('../../../assets/img/nexTurn.svg').default} />
                             <span>{currentTurn === 0 ? "Start" : "Next"}Turn</span>
                         </div>
                     </div>
                 ) : (
-                        <div className="btn-wrap" onClick={goToNewGame}>
+                        <div className="turn-btn-wrap" onClick={goToNewGame}>
                             <div className="leaderboard-btn">Start New Game</div>
                         </div>
                     )}

@@ -5,20 +5,22 @@
     padding: 0 82px 36px;
 
     .turn-wrap {
-      position: relative;
-      bottom: 20px;
-      width: 100px;
-      padding: 10px;
-      margin-inline-start: 40%;
-      border-radius: 50px;
-      text-align: center;
-      align-self: center;
-      background-color: #009ffd;
+      display: flex;
+      justify-content: center;
 
       .current-turn {
+        background-color: #009ffd;
+        padding: 10px 30px;
+        border-radius: 50px;
         font-size: 1.5em;
         font-weight: bold;
         color: white;
+
+        @include w600 {
+          margin-top: 10px;
+          padding: 5px 20px;
+          font-size: 1.2em;
+        }
       }
     }
 
@@ -62,7 +64,6 @@
       @include w960 {
         margin-top: 36px;
       }
-
       .question-wrap {
         margin-bottom: 60px;
 
@@ -73,6 +74,10 @@
         .question {
           font-size: 1.5em;
           font-weight: bold;
+
+          @include w600 {
+            font-size: 1.2em;
+          }
         }
 
         .field-wrap {
@@ -94,6 +99,7 @@
 
     .events-wrap {
       margin-top: 30px;
+
       @include w960 {
         margin-top: 36px;
       }
@@ -101,15 +107,21 @@
       .question {
         font-weight: bold;
         font-size: 1.5em;
+        @include w600 {
+          font-size: 1.2em;
+        }
       }
 
       .event-wrap {
         display: flex;
-        flex-direction: row;
 
         .eve-name-qus-field {
           min-width: 200px;
+          @include w320 {
+            min-width: 150px;
+          }
         }
+
         .eve-cost-qus-field {
           max-width: 284px;
           margin-left: 10px;
@@ -124,27 +136,18 @@
     }
 
     .btn-wrap {
-      position: relative;
-      margin: 40px 0px;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
 
       .dreams-btn {
-        float: left;
         @include button;
         width: 150px;
-        padding: 5px 20px;
+        @include w320 {
+          width: 130px;
+        }
       }
       .info-btn {
-        float: right;
         @include button;
-
-        // .btn-cont {
-        //   @include flexCenterRow;
-        //   .label {
-        //     margin-left: 6px;
-        //     vertical-align: middle;
-        //   }
-        // }
       }
     }
   }

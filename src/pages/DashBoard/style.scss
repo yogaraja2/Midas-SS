@@ -182,11 +182,20 @@
             margin-right: 3px;
             width: 32px;
             height: 32px;
+
+            @include w600 {
+              width: 20px;
+              height: 20px;
+            }
           }
 
           .cash-value {
             font-size: 2em;
             font-weight: 700;
+
+            @include w600{
+              font-size: 1.5em;
+            }
           }
         }
 

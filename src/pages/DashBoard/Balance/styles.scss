@@ -76,6 +76,10 @@
       width: 50%;
       margin-top: 28px;
 
+      @include w960{
+        width: 100%;
+      }
+
       .lblity-card {
         padding: 8px 0;
 
