@@ -16,16 +16,17 @@ function Question({ data, values, setValues }) {
     <div className="question-wrap">
       <p className="question">{data.question}</p>
       <div className="field-wrap">
-        {data.fields.map((i, index) => (
+        {data.fields.map((item, index) => (
           <TextField
             key={index}
             className="qus-field"
-            label={i.label}
-            name={i.name}
-            value={values[i.name]}
+            label={item.label}
+            name={item.name}
+            value={values[item.name]}
             type="number"
             onChange={handleChange}
-            disabled={!i.isEnable}
+            disabled={!item.isEnable}
+            // autoFocus
           />
         ))}
       </div>

@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
 import { API } from '../../../config/apis'
-import Fetch from '../../../Api'
+import Fetch, { URL } from '../../../Api'
 import { setNewGame, setPageNo, setAvatarId } from '../../../redux/Action'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -18,6 +18,7 @@ import {
     DialogContentText,
     DialogTitle
 } from '@material-ui/core'
+import Textfield from '../../../components/Textfield'
 
 function UserProfile() {
 
@@ -25,7 +26,11 @@ function UserProfile() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
     const [gameLength, setGameLength] = useState(gameDetails.gameLength)
+
+    // useEffect(() => {
+    // }, [gameDetails])
 
     const SelectLength = ({ id, name, gameLength, setGameLength }) => {
         return (
@@ -36,7 +41,11 @@ function UserProfile() {
     }
     const other = { gameLength, setGameLength }
 
-
+    const [newPassword, setNewPassword] = useState({
+        password: '',
+        confirmPassword: ''
+    })
+    // console.log(newPassword)
     const [openPwd, setOpenPwd] = useState(false)
     const handleOpenPwd = () => {
         setOpenPwd(true)
@@ -54,44 +63,32 @@ function UserProfile() {
         setOpenAvatar(false)
     }
 
-
-
-    const token = localStorage.getItem('midasToken')
-    const auth = 'Bearer '.concat(token)
-
-    const goToNewGame = () => {
-        Fetch.get(API.gamePlay.cashFlow.newGame, {
-            headers: {
-                Authorization: auth
-            }
-        })
-            .then(res => {
-                // console.log(res.data)
-                if (res.status === 200) {
-                    dispatch(setNewGame())
-                    dispatch(setPageNo(0))
-                    history.push(commonRoute.gameOptions)
-                }
-            })
-            .catch(err => {
-                // console.log(err.message)
-            })
-    }
-
-
     const [avatar, setAvatar] = useState(gameDetails.avatarIcon)
     const restAvatar = { avatar, setAvatar }
 
-    useEffect(() => {
+    const headers = {
+        Authorization: `Bearer ${localStorage.getItem('midasToken')}`
+    };
 
+    useEffect(() => {
         const newData = {
             avatarIcon: avatar,
             income: gameDetails.income,
             gameLength: gameLength,
-            gameMode: gameDetails.gameMode
+            role: gameDetails.role
         }
-
         dispatch(setAvatarId(newData))
+        // console.log(newData)
+        // let values = Object.assign({ pageNo: 2 }, newData);
+
+        Fetch.post(URL.gameDetails, newData, { headers })
+            .then((res) => {
+                // console.log(res.data)
+            })
+            .catch((err) => {
+                // console.log(err.message)
+            })
+
     }, [avatar, gameLength])
 
     const AvatarField = ({ id, avatar, setAvatar }) => {
@@ -105,6 +102,22 @@ function UserProfile() {
                 </div>
             </div>
         )
+    }
+
+    const goToNewGame = () => {
+
+        Fetch.get(API.gamePlay.cashFlow.newGame, { headers })
+            .then(res => {
+                // console.log(res.data)
+                if (res.status === 200) {
+                    dispatch(setNewGame())
+                    dispatch(setPageNo(0))
+                    history.push(commonRoute.gameOptions)
+                }
+            })
+            .catch(err => {
+                // console.log(err.message)
+            })
     }
 
 
@@ -159,7 +172,7 @@ function UserProfile() {
             {openPwd && (
                 <Dialog open={openPwd} onClose={handleClose} aria-labelledby="update-password">
                     <DialogTitle id="update-password">Update Password</DialogTitle>
-                    <DialogContent>
+                    <DialogContent className="password-fields-wrap">
                         {/* <TextField
                             label="Old Password"
                             name="oldPassword"
@@ -170,14 +183,21 @@ function UserProfile() {
                             label="Enter New Password"
                             name="newPassword"
                             id="newPassword"
+                            type="password"
+                            helperText="alphanumeric with minimum length is 8"
+                            value={newPassword.password}
+                            onChange={e => (setNewPassword({ ...newPassword, password: e.target.value }))}
                             fullWidth
                         />
-                        <TextField
+                        {/* <TextField
                             label="Confirm Password"
                             name="confirmPassword"
                             id="confirmPassword"
+                            type="password"
+                            value={newPassword.confirmPassword}
+                            onChange={e => (setNewPassword({ ...newPassword, confirmPassword: e.target.value }))}
                             fullWidth
-                        />
+                        /> */}
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color="primary">

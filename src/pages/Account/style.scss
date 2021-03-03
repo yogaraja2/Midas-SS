@@ -17,10 +17,18 @@
       justify-content: flex-start;
       margin-top: 36px;
     }
+    @include h600 {
+      margin-top: 0px;
+    }
 
     .copyright-wrap {
       position: absolute;
       bottom: 26px;
+
+      @include h600 {
+        bottom: 10px;
+        // margin-top: 136px;
+      }
     }
 
     .field-wrap {
@@ -48,6 +56,10 @@
 
     .form-btns {
       margin-top: 37px;
+
+      @include h600 {
+        margin-top: 20px;
+      }
 
       .signin-btn {
         @include button;

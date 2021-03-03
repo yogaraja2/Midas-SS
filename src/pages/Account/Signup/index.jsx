@@ -70,7 +70,7 @@ function Signup() {
   const [count, setCount] = useState(false)
 
   const handleSignup = (data) => {
-    
+
     if (data.password !== data.confirmPassword) {
       // console.log('wrong password')
       setMessage("Incorrect password, please enter valid password")

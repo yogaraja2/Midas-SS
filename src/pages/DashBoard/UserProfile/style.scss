@@ -78,26 +78,8 @@
 
 // --------- Password Popup ---------- //
 
-.popup-dialog-container {
-  .changePassword {
-    .body-wrap {
-      @include flexCenter;
-      width: 100%;
-
-      .password-fields-wrap {
-        margin: 24px 0;
-      }
-
-      .dlg-action-btn {
-        @include lrPartition;
-        width: 80%;
-
-        @include w320 {
-          width: 90%;
-        }
-      }
-    }
-  }
+.update-password {
+  
 }
 
 // avatar-selection

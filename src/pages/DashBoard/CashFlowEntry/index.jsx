@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import GameCoin from '../../../components/GameCoin'
 import Question from './Question'
-import Events from './Events'
 import { AiOutlineInfoCircle as InfoIcon } from 'react-icons/ai'
 import { Button } from '@material-ui/core'
 import Fetch from '../../../Api'
@@ -11,7 +10,7 @@ import { commonRoute } from '../../../config/routes'
 import SnackBar from '../../../components/SnackBar'
 import Textfield from '../../../components/Textfield'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCashflowValues, setCashFlowApiData, setEventsCost, setEventCount } from '../../../redux/Action'
+import { setCashflowValues, setCashFlowApiData, setEventsCost, setEventCount, setNewGame, setPageNo } from '../../../redux/Action'
 import { TextField } from '@material-ui/core'
 
 const AvailableBal = ({ label, value }) => (
@@ -116,9 +115,7 @@ function CashFlowEntry(props) {
         if (res.status === 200) {
           dispatch(setCashFlowApiData(res.data))
           if (res.data.status >= 400) {
-            // setError('Your Expenses crossed your credit limit !!!')
-            setError(res.data.message)
-            // props.history.push(commonRoute.gameOptions)
+            setError('Your Expenses crossed your credit limit !!!')
           }
           else {
             props.history.push({
@@ -137,6 +134,31 @@ function CashFlowEntry(props) {
         setError('Something went wrong !!!')
         console.error(err)
       })
+  }
+
+  const handleClose = (reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    if (error) {
+      const headers = {
+        Authorization: `Bearer ${localStorage.getItem('midasToken')}`
+      }
+      Fetch.get(API.gamePlay.cashFlow.newGame, { headers })
+        .then(res => {
+          // console.log(res.data)
+          if (res.status === 200) {
+            dispatch(setNewGame())
+            dispatch(setPageNo(0))
+            props.history.push(commonRoute.gameOptions)
+          }
+        })
+        .catch(err => {
+          // console.log(err.message)
+        })
+    }
+
+    setError(false)
   }
 
   return (
@@ -216,8 +238,8 @@ function CashFlowEntry(props) {
       <SnackBar
         openDialog={!!error}
         message={error}
-        severity="info"
-        onclose={setError.bind(this, null)}
+        severity="Game Over !!!"
+        onclose={handleClose}
       />
     </div>
   )

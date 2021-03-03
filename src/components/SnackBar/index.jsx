@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core'
 
 const useStyle = makeStyles(() => ({
-  
+
   infoHeader: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -19,13 +19,14 @@ const useStyle = makeStyles(() => ({
   },
   errorHeader: {
     fontSize: 20,
+    fontWeight: 'bold',
     color: '#fd041b',
   },
   message: {
-    fontSize: '1em',
-    fontWeight: 'bold',
-    // padding: 20,
-    margin: '0px 80px',
+    fontSize: '1.2em',
+    // fontWeight: 'bold',
+    padding: 20,
+    // margin: '0px 80px',
   },
   buttonContainer: {
     display: 'flex',
@@ -64,7 +65,7 @@ function SnackBar({ openDialog, message, onclose, severity }) {
                   severity === 'info' ? classes.infoHeader : classes.errorHeader
                 }
               >
-                {severity === 'info' ? 'Info' : 'Error'}
+                {severity === 'Game Over !!!' ? severity : severity === 'info' ? 'info' : 'Error'}
               </Typography>
               <Typography className={classes.message}>{message}</Typography>
               <Box className={classes.buttonContainer}>

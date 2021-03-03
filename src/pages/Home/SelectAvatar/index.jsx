@@ -102,25 +102,21 @@ function SelectAvatar() {
         pageNo: 2,
     }
 
-    const token = localStorage.getItem('midasToken')
-    const auth = 'Bearer '.concat(token)
-
     const goToSelectDream = (initialValues) => {
         // console.log(initialValues)
         dispatch(setAvatarId(initialValues))
+        const headers = {
+            Authorization: `Bearer ${localStorage.getItem('midasToken')}`
+        };
 
-        API.post(URL.gameDetails, initialValues, {
-            headers: {
-                Authorization: auth
-            }
-        })
+        API.post(URL.gameDetails, initialValues, { headers })
             .then((res) => {
                 setResponse(res)
                 dispatch(setPageNo(2))
                 history.push(commonRoute.selectDreams)
             })
             .catch((err) => {
-                console.log(err.message)
+                // console.log(err.message)
                 setErrMsg(err.message)
             })
     }

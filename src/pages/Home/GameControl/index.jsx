@@ -36,7 +36,7 @@ function GameControl() {
 
   const [selected, setSelected] = useState('new')
 
-  // const currentTurn = useSelector(state => state.dashboard.currentTurn)
+  const currentTurn = useSelector(state => state.dashboard.currentTurn)
   const pageNo = useSelector(state => state.pageNo)
 
   const [page, setPage] = useState(pageNo)
@@ -52,25 +52,30 @@ function GameControl() {
 
     if (selected === 'leaderboard') {
       history.push(commonRoute.leaderboard)
-    } 
+    }
     else if (selected == 'new') {
-      // const headers = {
-      //   Authorization: `Bearer ${localStorage.getItem('midasToken')}`
-      // }
-      // Fetch.get(API.gamePlay.cashFlow.newGame, { headers })
-      //   .then(res => {
-      //     // console.log(res.data)
-      //     if (res.status === 200) {
-      //       dispatch(setNewGame())
-      //       dispatch(setPageNo(0))
-      //       history.push(commonRoute.selectAvatar)
-      //     }
-      //   })
-      //   .catch(err => {
-      //     // console.log(err.message)
-      //   })
+
+      if (currentTurn === 0) {
         history.push(commonRoute.selectAvatar)
-    } 
+      }
+      else {
+        const headers = {
+          Authorization: `Bearer ${localStorage.getItem('midasToken')}`
+        }
+        Fetch.get(API.gamePlay.cashFlow.newGame, { headers })
+          .then(res => {
+            // console.log(res.data)
+            if (res.status === 200) {
+              dispatch(setNewGame())
+              dispatch(setPageNo(0))
+              history.push(commonRoute.selectAvatar)
+            }
+          })
+          .catch(err => {
+            // console.log(err.message)
+          })
+      }
+    }
     else {
       history.push(commonRoute.dashboard.mainDash)
     }

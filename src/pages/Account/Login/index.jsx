@@ -78,7 +78,7 @@ function Login() {
   function handleOnClose() {
 
     if (response?.role === 'Individual' || response?.role === 'Student') {
-      if (response?.pageNo === 1) {
+      if (response?.pageNo === 0 || response?.pageNo === 1) {
         history.push(commonRoute.gameOptions)
       }
       else if (response.pageNo === 2) {
@@ -109,6 +109,10 @@ function Login() {
       history.push(commonRoute.schoolAdminLogin.schoolAdminHome)
     }
     setError(false)
+  }
+
+  const openDialog = () => {
+    alert('opened')
   }
 
   return (
@@ -144,7 +148,7 @@ function Login() {
         <div className="form-field">
           <div className="label psswd-ctrl">
             <div className="psswd-label">Password</div>
-            <LinkButton className="forget-psswd-btn">
+            <LinkButton className="forget-psswd-btn" onClick={openDialog}>
               Forgot Password?
             </LinkButton>
           </div>
