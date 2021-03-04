@@ -111,8 +111,8 @@ function Login() {
     setError(false)
   }
 
-  const openDialog = () => {
-    alert('opened')
+  const goToForgotPassword = () => {
+    history.push(`${getOriginPath(commonRoute.account)}/forgotPassword`)
   }
 
   return (
@@ -148,7 +148,7 @@ function Login() {
         <div className="form-field">
           <div className="label psswd-ctrl">
             <div className="psswd-label">Password</div>
-            <LinkButton className="forget-psswd-btn" onClick={openDialog}>
+            <LinkButton className="forget-psswd-btn" onClick={goToForgotPassword}>
               Forgot Password?
             </LinkButton>
           </div>

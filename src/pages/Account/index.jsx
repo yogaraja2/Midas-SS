@@ -1,14 +1,27 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import './style.scss'
-import Login from './Login'
 import { useParams } from 'react-router-dom'
-import Signup from './Signup'
 import { Copyright } from '../../components/Footer'
+
+import Signup from './Signup'
+import Login from './Login'
 import SelectRole from './SelectRole'
+import ForgotPassword from './ForgotPassword'
+import ResetPassword from './ResetPassword'
 
 function Account() {
   const { screen } = useParams()
+
+  function screenSwitch(screen) {
+    switch (screen) {
+      case 'signup': return <Signup />;
+      case 'selectRole': return <SelectRole />;
+      case 'forgotPassword': return <ForgotPassword />;
+      case 'resetPassword': return <ResetPassword />;
+      default: return <Login />;
+    }
+  }
 
   return (
     <Grid container className="account-wrapper">
@@ -17,13 +30,8 @@ function Account() {
       </Grid>
 
       <Grid item xs={12} md={8} className="account-screens">
-        {screen === 'signup' ? (
-          <Signup />
-        ) : screen === 'selectRole' ? (
-          <SelectRole />
-        ) : (
-          <Login />
-        )}
+
+        {screenSwitch(screen)}
 
         <div className="copyright-wrap">
           <Copyright />

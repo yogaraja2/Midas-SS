@@ -22,6 +22,20 @@ export const mainRoute = [
     }
   },
   {
+    name: 'Forgot Password',
+    props: {
+      path: commonRoute.account,
+      component: Account
+    }
+  },
+  {
+    name: 'Reset Password',
+    props: {
+      path: commonRoute.account,
+      component: Account
+    }
+  },
+  {
     name: 'Select Role',
     props: {
       path: commonRoute.selectRole,
