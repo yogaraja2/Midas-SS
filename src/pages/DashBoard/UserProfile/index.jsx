@@ -19,18 +19,19 @@ import {
     DialogTitle
 } from '@material-ui/core'
 import Textfield from '../../../components/Textfield'
+import { FormTextfield } from '../../../components/FormField'
+import { useForm } from 'react-hook-form'
+import SnackBar from '../../../components/SnackBar'
 
 function UserProfile() {
 
     const gameDetails = useSelector(state => state.selectAvatar)
+    const gmail = useSelector(state => state.loginData.gmail)
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     const [gameLength, setGameLength] = useState(gameDetails.gameLength)
-
-    // useEffect(() => {
-    // }, [gameDetails])
 
     const SelectLength = ({ id, name, gameLength, setGameLength }) => {
         return (
@@ -41,17 +42,41 @@ function UserProfile() {
     }
     const other = { gameLength, setGameLength }
 
-    const [newPassword, setNewPassword] = useState({
-        password: '',
-        confirmPassword: ''
-    })
-    // console.log(newPassword)
+    const defaultValues = {
+        newPassword: '',
+    }
+    const { control, errors, handleSubmit } = useForm(defaultValues)
+    const validationErr = {
+        passwordValidation: 'Password must contain alphaNumeric',
+        passwordLength: 'Required password length 8 to 20 letters',
+    }
+    const [message, setMessage] = useState(null)
+    const [Error, setError] = useState(false)
+    const [response, setResponse] = useState(null)
+    const allyProps = { control, error: errors }
     const [openPwd, setOpenPwd] = useState(false)
     const handleOpenPwd = () => {
         setOpenPwd(true)
     }
     const handleClose = () => {
         setOpenPwd(false)
+    }
+    const passwordHandler = (values) => {
+        setOpenPwd(false)
+        const newValues = {
+            gmail: gmail,
+            password: values.newPassword
+        }
+        Fetch.post(URL.forgotPassword, newValues)
+            .then(res => {
+                console.log(res.data)
+                setError(true)
+                setResponse(res.data)
+                setMessage('Password updated successfully !!!')
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
     }
 
 
@@ -78,8 +103,6 @@ function UserProfile() {
             role: gameDetails.role
         }
         dispatch(setAvatarId(newData))
-        // console.log(newData)
-        // let values = Object.assign({ pageNo: 2 }, newData);
 
         Fetch.post(URL.gameDetails, newData, { headers })
             .then((res) => {
@@ -105,7 +128,6 @@ function UserProfile() {
     }
 
     const goToNewGame = () => {
-
         Fetch.get(API.gamePlay.cashFlow.newGame, { headers })
             .then(res => {
                 // console.log(res.data)
@@ -120,7 +142,9 @@ function UserProfile() {
             })
     }
 
-
+    function handleOnClose() {
+        setError(false)
+    }
 
     return (
         <Grid item xs={12} md={10} className="user-profile-root">
@@ -170,41 +194,54 @@ function UserProfile() {
             </div>
 
             {openPwd && (
-                <Dialog open={openPwd} onClose={handleClose} aria-labelledby="update-password">
-                    <DialogTitle id="update-password">Update Password</DialogTitle>
+                <Dialog open={openPwd} onClose={handleClose} aria-labelledby="update-password" className="update-password">
+                    <DialogTitle id="update-password" color="primary">Update Password</DialogTitle>
                     <DialogContent className="password-fields-wrap">
-                        {/* <TextField
-                            label="Old Password"
-                            name="oldPassword"
-                            id="oldPassword"
-                            fullWidth
-                        /> */}
-                        <TextField
-                            label="Enter New Password"
-                            name="newPassword"
-                            id="newPassword"
-                            type="password"
-                            helperText="alphanumeric with minimum length is 8"
-                            value={newPassword.password}
-                            onChange={e => (setNewPassword({ ...newPassword, password: e.target.value }))}
-                            fullWidth
-                        />
-                        {/* <TextField
-                            label="Confirm Password"
-                            name="confirmPassword"
-                            id="confirmPassword"
-                            type="password"
-                            value={newPassword.confirmPassword}
-                            onChange={e => (setNewPassword({ ...newPassword, confirmPassword: e.target.value }))}
-                            fullWidth
-                        /> */}
+                        <form className="field-wrap" onSubmit={handleSubmit(passwordHandler)}>
+                            <div className="form-field">
+                                <FormTextfield
+                                    className="pswd-field"
+                                    label="Enter New Password"
+                                    name="newPassword"
+                                    type="password"
+                                    placeholder="********"
+                                    onChange={(e) => e.target.value}
+                                    rules={{
+                                        required: 'Please enter your password',
+                                        minLength: {
+                                            value: 8,
+                                            message: validationErr.passwordLength
+                                        },
+                                        maxLength: {
+                                            value: 20,
+                                            message: validationErr.passwordLength
+                                        },
+                                        pattern: {
+                                            value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/,
+                                            message: validationErr.passwordValidation
+                                        }
+                                    }}
+                                    error={errors.password && errors.password.message}
+                                    hasValidation
+                                    {...allyProps}
+                                />
+                            </div>
+                            <DialogActions>
+                                <Button type="submit" color="primary">
+                                    Update
+                                </Button>
+                            </DialogActions>
+                        </form>
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            Update
-                        </Button>
-                    </DialogActions>
                 </Dialog>
+            )}
+            {response && response.update && (
+                <SnackBar
+                    openDialog={Error}
+                    message={message}
+                    onclose={handleOnClose}
+                    severity={'success'}
+                />
             )}
 
             {openAvatar && (
@@ -238,8 +275,7 @@ function UserProfile() {
                         </Button>
                     </DialogActions>
                 </Dialog>
-            )
-            }
+            )}
 
         </Grid >
     )

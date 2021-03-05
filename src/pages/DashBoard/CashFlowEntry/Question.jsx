@@ -25,8 +25,8 @@ function Question({ data, values, setValues }) {
             value={values[item.name]}
             type="number"
             onChange={handleChange}
-            disabled={!item.isEnable}
-            // autoFocus
+            // disabled={!item.isEnable}
+            // autoFocus={true}
           />
         ))}
       </div>

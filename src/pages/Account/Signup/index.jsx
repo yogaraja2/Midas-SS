@@ -149,7 +149,7 @@ function Signup() {
             className="user-name"
             label="Username"
             name="username"
-            placeholder="Midas"
+            placeholder="Abc"
             onChange={(e) => e.target.value}
             rules={{
               required: 'Please enter username',
@@ -173,7 +173,7 @@ function Signup() {
             className="gmail-field"
             name="gmail"
             label="E-Mail"
-            placeholder="midas123@gmail.com"
+            placeholder="abc123@gmail.com"
             onChange={(e) => e.target.value}
             rules={{
               required: 'Please enter your gmail',

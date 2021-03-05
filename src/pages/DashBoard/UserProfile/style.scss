@@ -79,7 +79,12 @@
 // --------- Password Popup ---------- //
 
 .update-password {
-  
+  .field-wrap{
+    width: 300px;
+    @include w600{
+      width: 200px;
+    }
+  }
 }
 
 // avatar-selection
