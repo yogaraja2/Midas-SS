@@ -43,7 +43,7 @@ function Balance() {
         years={currentData?.gameLength}
         clickableTill={currentData?.currentTurn}
       />
-
+      {/* <h2 className="sec-head stats">Turn {dataYear}</h2> */}
       <div className="asset-bal-det">
         <h2 className="sec-head">Assets</h2>
         <Assets data={currentData?.assets} lbty={currentData?.liabilities} isEnablesell={(dataYear === currentData?.currentTurn) ? true : false} />

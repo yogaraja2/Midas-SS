@@ -115,25 +115,26 @@ function Stats() {
                     <ChartComponent id="charts1" primaryXAxis={networthxaxis} primaryYAxis={networthyaxis} tooltip={{ enable: true, shared: true }} title="Networth-BreakDown">
                         <Inject services={[SplineSeries, ColumnSeries, Legend, Tooltip, DataLabel, Category, StripLine]} />
                         <SeriesCollectionDirective>
-                            <SeriesDirective
-                                dataSource={retirementSavings}
-                                xName='year'
-                                yName='retirementSavings'
-                                name='Retirement Savings'
-                                type='Spline'
-                                fill='#009ffd'
-                                marker={marker}
-                                width={5}
-                            />
+
                             <SeriesDirective
                                 dataSource={netWorth}
                                 xName='year'
                                 yName='netWorth'
                                 name='Networth'
                                 type='Column'
-                                fill='orange'
-                                columnWidth={0.01}
+                                fill='#009ffd'
+                                columnWidth={0.1}
                                 width={2}
+                            />
+                            <SeriesDirective
+                                dataSource={retirementSavings}
+                                xName='year'
+                                yName='retirementSavings'
+                                name='Retirement Savings'
+                                type='Spline'
+                                fill='#f18e03'
+                                marker={marker}
+                                width={3}
                             />
                         </SeriesCollectionDirective>
                     </ChartComponent>

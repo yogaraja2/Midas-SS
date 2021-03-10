@@ -104,21 +104,25 @@
     }
 
     .other-players {
+      max-height: calc(100vh - 475px);
       position: relative;
       margin-top: 2%;
       overflow: auto;
-      
+
+      @include w600 {
+        max-height: calc(100vh - 325px);
+      }
 
       .leader-board-table {
         width: 100%;
         border-radius: 15px;
         background-color: white;
         border-collapse: collapse;
-        // table-layout: fixed;
-        max-height: calc(100vh - 475px);
+        table-layout: fixed;
+        overflow-y: scroll;
 
         .table-heading {
-          // position: sticky;
+          position: sticky;
           .title {
             font-size: 1.5em;
             font-weight: bold;
@@ -152,7 +156,7 @@
       @include w960 {
         position: absolute;
         margin-top: 16px;
-        left: 20px;
+        left: 10px;
       }
     }
   }

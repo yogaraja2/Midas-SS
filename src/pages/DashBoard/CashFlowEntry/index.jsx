@@ -30,7 +30,7 @@ function CashFlowEntry(props) {
 
   const loanData = balancesheet?.filter((item) => item.year === currentTurn - 1)[0]
   const liability = loanData?.liabilities;
-  console.log(liability)
+  // console.log(liability)
 
   const surplusAmt = useSelector(state => state.dashboard.surplusAmt)
   const savingAmt = useSelector(state => state.dashboard.savingsAmt)
@@ -163,15 +163,14 @@ function CashFlowEntry(props) {
 
   return (
     <div className="dash-cash-flow-info-page">
-      {/* <div className="avl-bal-wrap">
-        <AvailableBal label="Income Available" value={surplusAmt < 0 ? 0 : surplusAmt} />
-        <AvailableBal label="Savings Available" value={savingAmt < 0 ? 0 : savingAmt} />
-      </div> */}
 
       <div className="turn-wrap">
         <h2 className="current-turn">Turn {currentTurn}</h2>
       </div>
-
+      <div className="avl-bal-wrap">
+        <AvailableBal label="Savings Available" value={savingAmt < 0 ? 0 : savingAmt} />
+        <AvailableBal label="Income Available" value={surplusAmt < 0 ? 0 : surplusAmt} />
+      </div>
       <div className="questions-wrap">
         {questions.map((i, index) => (
           <Question

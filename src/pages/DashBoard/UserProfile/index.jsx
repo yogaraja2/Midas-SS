@@ -25,8 +25,10 @@ import SnackBar from '../../../components/SnackBar'
 
 function UserProfile() {
 
-    const gameDetails = useSelector(state => state.selectAvatar)
-    const gmail = useSelector(state => state.loginData.gmail)
+    const gameDetails = useSelector(state => state?.selectAvatar)
+    const tmpMail1 = useSelector(state => state?.loginData?.gmail)
+    const tmpMail2 = useSelector(state => state?.signupData?.gmail)
+    const gmail = tmpMail1 ? tmpMail1 : tmpMail2;
 
     const dispatch = useDispatch();
     const history = useHistory();

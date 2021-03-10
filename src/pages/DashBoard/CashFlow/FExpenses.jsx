@@ -8,11 +8,12 @@ function FExpenses({ size, data }) {
       <h2>Fixed Expenses</h2>
       <div className="content-wrap m-left">
         <Entry label="Mortgage" value={data?.mortgage} />
-        <Entry label="Taxes" value={data?.taxes} />
+        <Entry label="Taxes (Income,FICA,etc..)" value={data?.taxes} />
         <Entry label="Utilites" value={data?.utilities} />
-        <Entry label="Auto Maintenance" value={data?.autoMaintenance} />
+        <Entry label="Auto Maintenance (Gas,Repairs)" value={data?.autoMaintenance} />
         <Entry label="Auto Insurance" value={data?.autoInsurance} />
-        <Entry label="Minimum Debt Payments" value={data?.minimumdeptRepayment} />
+        <Entry label="Health Insurance Premiums" value={data?.healthInsurance} />
+        <Entry label="Minimum Debt Payments (non-mortgage)" value={data?.minimumdeptRepayment} />
         <Entry label="Misc.Expenses" value={data?.miscExpenses} />
       </div>
     </Grid>

@@ -9,7 +9,7 @@ function StatTotal({ data }) {
         <div>
           <div className="content-grid">
             <Entry endEven label="Total expenses" value={data?.totalExpenses} />
-            <Entry endEven label="Annual" value={data?.annual} />
+            <Entry endEven label="Annual Income" value={data?.annual} />
             <Entry
               endEven
               label="Savings available"
