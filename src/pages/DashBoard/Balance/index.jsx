@@ -37,13 +37,17 @@ function Balance() {
 
   return (
     <div className="dashboard-balance-page">
-      <YearBar
+      {/* <YearBar
         value={dataYear}
         onClick={setDataYear}
         years={currentData?.gameLength}
         clickableTill={currentData?.currentTurn}
-      />
-      {/* <h2 className="sec-head stats">Turn {dataYear}</h2> */}
+      /> */}
+      <div className="turn-wrap">
+        <img src={require('../../../assets/img/ArrLeft.svg').default} alt="left arrow" onClick={setDataYear} />
+        <h2 className="current-turn">Year {dataYear}</h2>
+        <img src={require('../../../assets/img/ArrRight.svg').default} alt="right arrow" onClick={setDataYear} />
+      </div>
       <div className="asset-bal-det">
         <h2 className="sec-head">Assets</h2>
         <Assets data={currentData?.assets} lbty={currentData?.liabilities} isEnablesell={(dataYear === currentData?.currentTurn) ? true : false} />

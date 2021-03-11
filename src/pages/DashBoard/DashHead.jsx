@@ -24,7 +24,7 @@ function DashHead({ toggleMenu }) {
         </div>
       </div>
 
-      <div className="right-part">
+      {/* <div className="right-part">
         <div className="cash-wrap">
           <img
             src={require('../../assets/img/doller 2.svg').default}
@@ -33,9 +33,9 @@ function DashHead({ toggleMenu }) {
           />
           <span className="cash-value">${savingsAmt}</span>
         </div>
-        {/* <div className="total-cash">
+        <div className="total-cash">
           <div className="title-wrap">
-            <h3>NetWorth</h3>
+            <h3>Available Cash</h3>
           </div>
           <div className="cash-wrap">
             <img
@@ -43,15 +43,15 @@ function DashHead({ toggleMenu }) {
               alt="Coin"
               className="cash-icon"
             />
-            <span className="cash-value">${netWorth}</span>
+            <span className="cash-value">${savingsAmt}</span>
           </div>
-        </div> */}
-        {/* <HighlightCard
+        </div>
+        <HighlightCard
           className="net-worth"
           label="NetWorth"
           value={10000}
-        /> */}
-      </div>
+        />
+      </div> */}
     </div>
   )
 }

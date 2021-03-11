@@ -16,6 +16,37 @@
       margin-bottom: 28px;
     }
 
+    .turn-wrap {
+      display: flex;
+      justify-content: center;
+      // background-color: coral;
+      width: 300px;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+
+      img{
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+      }
+
+      .current-turn {
+        background-color: #009ffd;
+        padding: 10px 30px;
+        border-radius: 50px;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: white;
+
+        @include w600 {
+          margin-top: 10px;
+          padding: 5px 20px;
+          font-size: 1.2em;
+        }
+      }
+    }
+
     //--------------- asset list ------------------------
     .assets-wrap {
       .asset-card-wrap {
@@ -76,7 +107,7 @@
       width: 50%;
       margin-top: 28px;
 
-      @include w960{
+      @include w960 {
         width: 100%;
       }
 

@@ -10,11 +10,11 @@ const Entry = ({ label, title, balance, payment }) => {
       <td className="col">
         <div className="label-wrap cell">
           <span className="label">{label}</span>
-          {!!title && (
+          {/* {!!title && (
             <span className="info">
               <Infotip title={title} placement="top-end" size={0.84} />
             </span>
-          )}
+          )} */}
         </div>
       </td>
       <td className="col col-center">
@@ -58,13 +58,13 @@ function Liabilities({ data }) {
               payment={data?.creditLoan?.payment}
             />
             <Entry
-              label="Vehicle Loan"
+              label="Car Loan"
               title="This is credit card"
               balance={data?.carLoan?.balance}
               payment={data?.carLoan?.payment}
             />
             <Entry
-              label="Mortgage"
+              label="Mortgage Loan"
               title="This is credit card"
               balance={data?.mortgageLoan?.balance}
               payment={data?.mortgageLoan?.payment}
@@ -72,8 +72,8 @@ function Liabilities({ data }) {
             <Entry
               label="Student Loan"
               title="This is credit card"
-              balance={data?.studenLoan?.balance}
-              payment={data?.studenLoan?.payment}
+              balance={data?.studentLoan?.balance}
+              payment={data?.studentLoan?.payment}
             />
           </tbody>
 

@@ -18,9 +18,19 @@
       cursor: pointer;
     }
 
+    .label{
+      position: absolute;
+      top: 10px;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
     .asset-img {
       // max-width: 25px;
       // max-height: 25px;
+      margin-top: 10px;
       margin-bottom: 18px;
       cursor: pointer;
     }

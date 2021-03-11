@@ -56,7 +56,7 @@ function Assets({ data, lbty, isEnablesell }) {
   return (
     <Grid container spacing={3} className="assets-wrap">
       <AssetCard
-        name="carCard"
+        name="Car"
         img={car || "FullLoadedCar"}
         value={data?.vehicle?.price}
         isBought
@@ -71,7 +71,7 @@ function Assets({ data, lbty, isEnablesell }) {
         )}
       />
       <AssetCard
-        name="houseCard"
+        name="House"
         img={house || "Rambler"}
         value={data?.house?.price}
         isBought
@@ -85,8 +85,8 @@ function Assets({ data, lbty, isEnablesell }) {
           true
         )}
       />
-      <AssetCard name="savingsCard" img="savings" value={data?.chekingAndSavings} {...allyProps} />
-      <AssetCard name="retireCard" img="retire" value={data?.retirementSavings} {...allyProps} />
+      <AssetCard name="Savings" img="savings" value={data?.chekingAndSavings} {...allyProps} />
+      <AssetCard name="Retirement Savings" img="retire" value={data?.retirementSavings} {...allyProps} />
       {confDlg.status && confDlg.isSell && isEnablesell && (
         <SellPopup onClose={handleDlgClose} data={confDlg.data} />
       )}

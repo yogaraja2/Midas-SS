@@ -52,6 +52,7 @@ function AssetCard({
             Sell
           </div>
         )}
+        <div className="label">{name}</div>
 
         {!!img && (
           <img
@@ -61,7 +62,7 @@ function AssetCard({
           />
         )}
 
-        {name === 'savingsCard' || name === 'retireCard' || name === 'buyCard' || isEnablesell ?
+        {name === 'Savings' || name === 'Retirement Savings' || name === 'buyCard' || isEnablesell ?
           (<GameCoin
             className="asset-value"
             value={value}
