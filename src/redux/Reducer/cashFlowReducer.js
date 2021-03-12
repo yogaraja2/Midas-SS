@@ -1,12 +1,12 @@
 const initialState = {
-    livingExpenses: null,
-    entertainment: null,
-    retirementSavings: null,
-    creditCard: null,
-    carLoan: null,
-    studentLoan: null,
-    mortgage: null,
-    personalLoan: null
+    livingExpenses: 0,
+    entertainment: 0,
+    retirementSavings: 0,
+    creditCard: 0,
+    carLoan: 0,
+    studentLoan: 0,
+    mortgage: 0,
+    personalLoan: 0
 }
 
 const cashFlowReducer = (state = initialState, action) => {
@@ -32,7 +32,7 @@ const cashFlowReducer = (state = initialState, action) => {
         case 'USER_LOGOUT':
             return state = initialState
 
-        default: return state
+        default: return initialState
     }
 }
 

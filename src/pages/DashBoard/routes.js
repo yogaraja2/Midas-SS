@@ -25,7 +25,7 @@ export const dashboardRoutes = [
     name: 'Cash Flow',
     props: {
       path: commonRoute.dashboard.cashFlow,
-      component: CashFlowEntry,
+      component: CashFlow,
       exact: true
     },
     // redirection: {
@@ -35,10 +35,10 @@ export const dashboardRoutes = [
     // }
   },
   {
-    name: 'Cash Flow info',
+    name: 'Cash Flow Entry',
     props: {
-      path: commonRoute.dashboard.cashFlowInfo,
-      component: CashFlow,
+      path: commonRoute.dashboard.cashFlowEntry,
+      component: CashFlowEntry,
       exact: true
     }
   },

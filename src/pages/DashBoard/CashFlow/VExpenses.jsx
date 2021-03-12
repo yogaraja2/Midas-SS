@@ -11,7 +11,12 @@ function VExpenses({ size, data }) {
         <Entry label="Entertainment" value={data?.entertainment} />
         <Entry label="Retirement Savings" value={data?.retirementSavings} />
         <Entry label="Events Expenses" value={data?.randomEvents} />
+        <Entry label="Dream Cost" value={data?.dreamCost} />
         <Entry label="Debt Repayment " value={data?.deptRepayment} />
+        <Entry label="Extra CreditLoan Payment " value={data?.extraCreditLoanPayment} />
+        <Entry label="Extra MortgageLoan Payment " value={data?.extraMortgageLoanPayment} />
+        <Entry label="Extra StudentLoan Payment " value={data?.extraStudentLoanPayment} />
+        <Entry label="Extra VehicleLoan Payment " value={data?.extraVehicleLoanPayment} />
       </div>
     </Grid>
   )

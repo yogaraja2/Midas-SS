@@ -18,11 +18,11 @@ import { useSelector, useDispatch } from 'react-redux'
 
 function CashFlow(props) {
 
-  const currentTurn = useSelector(state => state.dashboard.currentTurn)
+  const currentTurn = useSelector(state => state?.dashboard.currentTurn)
   const dispatch = useDispatch()
   const [dataYear, setDataYear] = useState(currentTurn)
 
-  const state = useSelector(state => state.cashFlowData)
+  const state = useSelector(state => state?.cashFlowData)
   const currentData = state[0]
   // console.log('state')
   // console.log(currentData)
@@ -38,7 +38,7 @@ function CashFlow(props) {
   }
 
   const switchToEntry = () => {
-    props.history.push(commonRoute.dashboard.cashFlow)
+    props.history.push(commonRoute.dashboard.cashFlowEntry)
   }
 
   useEffect(() => {
@@ -56,7 +56,6 @@ function CashFlow(props) {
 
 
   useEffect(() => {
-
     const headers = {
       Authorization: `Bearer ${localStorage.getItem('midasToken')}`
     }
@@ -86,9 +85,14 @@ function CashFlow(props) {
         // years={40}
         clickableTill={currentData?.currentTurn}
       />
+      {/* <div className="turn-wrap">
+        <img src={require('../../../assets/img/ArrLeft.svg').default} alt="left arrow" onClick={setDataYear(currentTurn-1)} />
+        <h2 className="current-turn">Year {dataYear}</h2>
+        <img src={require('../../../assets/img/ArrRight.svg').default} alt="right arrow" onClick={setDataYear(currentTurn+1)} />
+      </div> */}
 
       <div className="stat-card-wrap">
-        <h2 className="sec-head stats">Year {dataYear}</h2>
+        {/* <h2 className="sec-head stats">Year {dataYear}</h2> */}
         <Card className="stat-card" transparent>
           <Grid container className="stat-grid-wrap">
             <Income {...allyProps} />
@@ -105,7 +109,7 @@ function CashFlow(props) {
         <div className="action-btn-wrap">
           <div className="btn-wrap">
             <Button className="btn" onClick={switchToEntry}>
-              Back
+              Change Budget
             </Button>
           </div>
           <div className="btn-wrap" onClick={goToBalance}>

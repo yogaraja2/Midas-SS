@@ -7,7 +7,7 @@ import YearBar from '../../../components/YearBar'
 import useFetch from '../../../hooks/useFetch'
 import { API } from '../../../config/apis'
 import HighlightCard from '../../../components/HighlightCard'
-import { setNetworth, setBalanceApiData } from '../../../redux/Action'
+import { setNetworth, setBalanceApiData, setCurrentTurn } from '../../../redux/Action'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { commonRoute } from '../../../config/routes'
@@ -16,11 +16,14 @@ import { commonRoute } from '../../../config/routes'
 function Balance() {
 
   const currentTurn = useSelector(state => state.dashboard.currentTurn)
+  const gameLength = useSelector(state => state.selectAvatar.gameLength)
   const dispatch = useDispatch()
   const [dataYear, setDataYear] = useState(currentTurn)
   const { data } = useFetch({
     url: API.gamePlay.balance
   })
+  console.log(data)
+
   dispatch(setBalanceApiData(data))
   const currentData = data?.filter((f) => f.year === dataYear)[0]
 
@@ -28,6 +31,10 @@ function Balance() {
     dispatch(setNetworth(currentData?.netWorth))
     !!currentData?.length && setDataYear(currentData?.currentTurn)
   }, [currentData])
+
+  useEffect(() => {
+    setCurrentTurn(dataYear)
+  }, [dataYear])
 
   const history = useHistory()
 
@@ -44,9 +51,9 @@ function Balance() {
         clickableTill={currentData?.currentTurn}
       /> */}
       <div className="turn-wrap">
-        <img src={require('../../../assets/img/ArrLeft.svg').default} alt="left arrow" onClick={setDataYear} />
+        {currentTurn > 1 && <img src={require('../../../assets/img/ArrLeft.svg').default} alt="left arrow" onClick={() => setDataYear(currentTurn - 1)} />}
         <h2 className="current-turn">Year {dataYear}</h2>
-        <img src={require('../../../assets/img/ArrRight.svg').default} alt="right arrow" onClick={setDataYear} />
+        {currentTurn !== 1 && currentTurn < gameLength && <img src={require('../../../assets/img/ArrRight.svg').default} alt="right arrow" onClick={() => setDataYear(currentTurn + 1)} />}
       </div>
       <div className="asset-bal-det">
         <h2 className="sec-head">Assets</h2>

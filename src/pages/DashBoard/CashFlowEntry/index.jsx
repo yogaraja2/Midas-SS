@@ -104,7 +104,7 @@ function CashFlowEntry(props) {
       studentLoan: parseInt(values.studentLoan || 0),
       mortgage: parseInt(values.mortgage || 0),
       personalLoan: parseInt(values.personalLoan || 0),
-      events
+      events,
     }
 
     dispatch(setCashflowValues(params))
@@ -119,7 +119,7 @@ function CashFlowEntry(props) {
           }
           else {
             props.history.push({
-              pathname: commonRoute.dashboard.cashFlowInfo
+              pathname: commonRoute.dashboard.cashFlow
             })
           }
         }

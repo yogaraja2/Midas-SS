@@ -10,21 +10,20 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setNewGame } from '../../../redux/Action'
 import { API } from '../../../config/apis'
 import Fetch from '../../../Api'
-import { setCurrentTurn, setEventCount, setEventsCost, setPageNo } from '../../../redux/Action'
+import { setCurrentTurn, setPageNo, setCashflowValues, setCashFlowApiData } from '../../../redux/Action'
 
 function MainDash() {
 
+    const cashflowValues = useSelector(state => state?.cashFlowValues)
     const [details, setDetails] = useState(null)
 
-    const token = localStorage.getItem('midasToken')
-    const auth = 'Bearer '.concat(token)
+    const headers = { Authorization: `Bearer ${localStorage.getItem('midasToken')}` }
+
+    // const token = localStorage.getItem('midasToken')
+    // const auth = 'Bearer '.concat(token)
 
     useEffect(() => {
-        Fetch.get(API.gamePlay.mainDashboard, {
-            headers: {
-                Authorization: auth
-            }
-        })
+        Fetch.get(API.gamePlay.mainDashboard, { headers })
             .then(res => {
                 setDetails(res.data)
             })
@@ -35,8 +34,8 @@ function MainDash() {
 
 
 
-    const gameLength = useSelector(state => state.selectAvatar.gameLength)
-    const currentTurn = useSelector(state => state.dashboard.currentTurn)
+    const gameLength = useSelector(state => state?.selectAvatar.gameLength)
+    const currentTurn = useSelector(state => state?.dashboard.currentTurn)
 
     const turnsLeft = gameLength - currentTurn;
     const dispatch = useDispatch()
@@ -47,24 +46,49 @@ function MainDash() {
         history.push(commonRoute.leaderboard)
     }
 
+    const [values, setValues] = useState(cashflowValues)
+
     const goToNextTurn = () => {
 
         if (details?.key !== -1) {
-            Fetch.get(API.gamePlay.cashFlow.nextTurn, {
-                headers: {
-                    Authorization: auth
-                }
-            })
+            Fetch.get(API.gamePlay.cashFlow.nextTurn, { headers })
                 .then((res) => {
                     // console.log(res)
                     if (res.status === 200) {
-                        dispatch(setCurrentTurn(currentTurn + 1))
-                        dispatch(setEventCount(1))
-                        dispatch(setEventsCost([{
-                            eventName: '',
-                            eventCost: ''
-                        }]))
-                        history.push(commonRoute.dashboard.cashFlow)
+                        
+                        const params = {
+                            ...values,
+                            livingExpenses: parseInt(values.livingExpenses || 0),
+                            entertainment: parseInt(values.entertainment || 0),
+                            retirementSavings: parseInt(values.retirementSavings || 0),
+                            creditCard: parseInt(values.creditCard || 0),
+                            carLoan: parseInt(values.carLoan || 0),
+                            studentLoan: parseInt(values.studentLoan || 0),
+                            mortgage: parseInt(values.mortgage || 0),
+                            personalLoan: parseInt(values.personalLoan || 0),
+                            events: [{ eventName: '', eventCost: '' }],
+                        }
+
+                        // dispatch(setCashflowValues(params))
+
+                        Fetch.post(API.gamePlay.cashFlow.entry, params, { headers })
+                            .then((res) => {
+                                dispatch(setCashFlowApiData(res.data))
+                                if (res.status === 200) {
+                                    history.push(commonRoute.dashboard.cashFlow)
+                                    dispatch(setCurrentTurn(currentTurn + 1))
+                                }
+                                else {
+                                    // setError('Something went wrong !!!')
+                                }
+                            })
+                            .catch((err) => {
+                                // setError(
+                                //     err.data?.error?.message || err?.response?.data?.error?.message
+                                // )
+                                // setError('Something went wrong !!!')
+                                console.error(err)
+                            })
                     }
                 })
                 .catch((err) => {
@@ -75,15 +99,10 @@ function MainDash() {
             history.push(commonRoute.dashboard.cashFlow)
         }
 
-
     }
 
     const goToNewGame = () => {
-        Fetch.get(API.gamePlay.cashFlow.newGame, {
-            headers: {
-                Authorization: auth
-            }
-        })
+        Fetch.get(API.gamePlay.cashFlow.newGame, { headers })
             .then(res => {
                 // console.log(res.data)
                 if (res.status === 200) {
@@ -180,10 +199,10 @@ function MainDash() {
                         </div>
                     </div>
                 ) : (
-                        <div className="turn-btn-wrap" onClick={goToNewGame}>
-                            <div className="leaderboard-btn">Start New Game</div>
-                        </div>
-                    )}
+                    <div className="turn-btn-wrap" onClick={goToNewGame}>
+                        <div className="leaderboard-btn">Start New Game</div>
+                    </div>
+                )}
             </div>
         </Grid>
     )
